@@ -58,7 +58,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Launcher</mainClass>
+                            <mainClass>com.joyful.tetris.Launcher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
