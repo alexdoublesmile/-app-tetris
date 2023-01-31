@@ -18,7 +18,7 @@ public class GameThread extends Thread {
             gameArea.spawnBlock();
             while(gameArea.moveBlockDown()) {   
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(300);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -63,7 +63,8 @@ public class GameArea extends JPanel {
     }
 
     public void rotateBlock() {
-
+        block.rotate();
+        repaint();
     }
 
     private void drawBlock(Graphics g) {
