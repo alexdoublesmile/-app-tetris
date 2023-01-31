@@ -1,5 +1,6 @@
 package com.joyful.tetris;
 
+import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.BLUE;
 import java.awt.Graphics;
@@ -9,7 +10,7 @@ public class GameArea extends JPanel {
     private final int cellSize;
     private final int rowsNumber;
     private final int columnsNumber;
-    private Color[]
+    private Color[][] background;
     
     private TetrisBlock block;
     
@@ -23,6 +24,7 @@ public class GameArea extends JPanel {
         cellSize = getBounds().width / columnsNumber;
         rowsNumber = getBounds().height / cellSize;
         
+        background = new Color[rowsNumber][columnsNumber];
         spawnBlock();
     }
     
@@ -34,6 +36,8 @@ public class GameArea extends JPanel {
 //                g.drawRect(i * cellSize, j * cellSize, cellSize, cellSize);            
 //            }
 //        }
+
+        drawBackgrouond(g);
         drawBlock(g);
     }
 
@@ -46,9 +50,7 @@ public class GameArea extends JPanel {
                     int x = (block.getX() + col) * cellSize;
                     int y = (block.getY() + row) * cellSize;
                     g.setColor(block.getColor());
-                    g.fillRect(x, y, cellSize, cellSize);
-                    g.setColor(BLACK);
-                    g.drawRect(x, y, cellSize, cellSize);
+                    drawGridSquare(g, color)
                 }
             }            
         }
@@ -68,5 +70,23 @@ public class GameArea extends JPanel {
 
     private boolean isBottom() {
         return block.getBottomCoord() >= rowsNumber; 
+    }
+
+    private void drawBackgrouond(Graphics g) {
+        for (int i = 0; i < rowsNumber; i++) {
+            for (int j = 0; j < columnsNumber; j++) {
+                Color color = background[i][j];
+                if (color != null) {
+                    drawGridSquare(g, color, i * cellSize, j * cellSize);
+                }
+            }
+        }
+    }
+
+    private void drawGridSquare(Graphics g, Color color, int x, int y) {
+        g.setColor(color);
+        g.fillRect(x, y, cellSize, cellSize);
+        g.setColor(BLACK);
+        g.drawRect(x, y, cellSize, cellSize);
     }
 }
