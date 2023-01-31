@@ -37,13 +37,17 @@ public class GameArea extends JPanel {
     }
 
     private void drawBlock(Graphics g) {
+        int[][] shape = block.getShape();
+        
         for (int row = 0; row < block.getHeight(); row++) {
             for (int col = 0; col < block.getWidth(); col++) {
-                if (block.getShape()[row][col] == 1) {
+                if (shape[row][col] == 1) {
+                    int x = (block.getX() + col) * cellSize;
+                    int y = (block.getY() + row) * cellSize;
                     g.setColor(block.getColor());
-                    g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                    g.fillRect(x, y, cellSize, cellSize);
                     g.setColor(BLACK);
-                    g.drawRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                    g.drawRect(x, y, cellSize, cellSize);
                 }
             }            
         }
