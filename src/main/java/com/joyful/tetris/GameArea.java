@@ -22,8 +22,10 @@ public class GameArea extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (int i = 0; i < gridColumns; i++) {
-            g.drawRect(i * gridCellSize, 0, gridCellSize, gridCellSize);            
+        for (int j = 0; j < gridRows; j++) {
+            for (int i = 0; i < gridColumns; i++) {
+                g.drawRect(i * gridCellSize, j * gridCellSize, gridCellSize, gridCellSize);            
+            }
         }
     }
 }
