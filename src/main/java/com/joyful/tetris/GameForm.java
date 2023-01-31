@@ -6,6 +6,7 @@ public class GameForm extends JFrame {
 
     public GameForm() {
         initComponents();
+        add(new GameArea());
     }
 
     @SuppressWarnings("unchecked")
