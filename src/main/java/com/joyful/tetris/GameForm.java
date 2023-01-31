@@ -1,6 +1,11 @@
 package com.joyful.tetris;
 
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
 
 public class GameForm extends JFrame {
 
@@ -8,11 +13,44 @@ public class GameForm extends JFrame {
         initComponents();
         GameArea gameArea = new GameArea(gameAreaPlaceholder);
         add(gameArea);
+        
+        initControls();
         startGame(gameArea);
     }
     
     public void startGame(GameArea gameArea) {
         new GameThread(gameArea).start();
+    }
+
+    private void initControls() {
+        InputMap im = getRootPane().getInputMap();
+        ActionMap am = getRootPane().getActionMap();
+        
+        im.put(KeyStroke.getKeyStroke("RIGHT"), "right");
+        im.put(KeyStroke.getKeyStroke("LEFT"), "left");
+        im.put(KeyStroke.getKeyStroke("DOWN"), "down");
+        im.put(KeyStroke.getKeyStroke("UP"), "up");
+        
+        am.put("right", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        am.put("left", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        am.put("down", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        am.put("up", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
