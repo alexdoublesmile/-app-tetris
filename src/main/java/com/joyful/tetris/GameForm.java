@@ -6,7 +6,13 @@ public class GameForm extends JFrame {
 
     public GameForm() {
         initComponents();
-        add(new GameArea(gameAreaPlaceholder));
+        GameArea gameArea = new GameArea(gameAreaPlaceholder);
+        add(gameArea);
+        startGame(gameArea);
+    }
+    
+    public void startGame(GameArea gameArea) {
+        new GameThread(gameArea).start();
     }
 
     @SuppressWarnings("unchecked")
