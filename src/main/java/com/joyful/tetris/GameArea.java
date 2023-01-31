@@ -46,21 +46,21 @@ public class GameArea extends JPanel {
     }
     
     public void moveBlockRight() {
-        if (!isRightEdge()) {
+        if (!checkRight()) {
             block.moveRight();
             repaint();
         }
     }
 
     public void moveBlockLeft() {
-        if (!isLeftEdge()) {
+        if (!checkLeft()) {
             block.moveLeft();
             repaint();
         }
     }
 
     public void dropBlock() {
-        while(!isBottom()) {
+        while(checkBottom()) {
             block.moveDown();
             repaint();
         }
@@ -92,7 +92,7 @@ public class GameArea extends JPanel {
     }
     
     public boolean moveBlockDown() {
-        if (isBottom()) {
+        if (!checkBottom()) {
             moveBlockToBackground();
             return false;
         } else {
@@ -102,16 +102,41 @@ public class GameArea extends JPanel {
         }
     }
 
-    private boolean isBottom() {
-        return block.getBottomCoord() == gridRows; 
+    private boolean checkBottom() {
+        if (block.getBottomCoord() == gridRows) {
+            return false;
+        } 
+        int[][] shape = block.getShape();
+        int width = block.getWidth();
+        int height = block.getHeight();
+        for (int col = 0; col < width; col++) {
+            for (int row = height - 1; row >= 0; row--) {
+                if (shape[row][col] != 0) {
+                    int x = col + block.getX();
+                    int y = row + block.getY() + 1;
+                    if (y < 0) break;
+                    if (background[y][x] != null) return false;
+                    break;
+                }
+            }
+        }
+        return true;
     }
     
-    private boolean isLeftEdge() {
-        return block.getLeftEdge() == 0;
+    private boolean checkLeft() {
+        if (block.getLeftEdge() != 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    private boolean isRightEdge() {
-        return block.getRightEdge() == gridColumns;
+    private boolean checkRight() {
+        if (block.getRightEdge() != gridColumns) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void drawBackgrouond(Graphics g) {
