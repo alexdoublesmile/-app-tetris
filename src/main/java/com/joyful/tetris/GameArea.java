@@ -48,6 +48,7 @@ public class GameArea extends JPanel {
             if (lineFilled) {
                 clearLine(r);
                 shiftDown(r);
+                clearLine(0);
                 repaint();
             }
         }
