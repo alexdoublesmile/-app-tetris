@@ -46,10 +46,23 @@ public class GameArea extends JPanel {
                 }
             }
             if (lineFilled) {
-                for (int i = 0; i < gridColumns; i++) {
-                    background[r][i] = null;
-                }
+                clearLine(r);
+                shiftDown(r);
                 repaint();
+            }
+        }
+    }
+    
+    public void clearLine(int row) {
+        for (int i = 0; i < gridColumns; i++) {
+            background[row][i] = null;
+        }
+    }
+
+    public void shiftDown(int r) {
+        for (int row = r; row > 0; row--) {
+            for (int col = 0; col < gridColumns; col++) {
+                background[row][col] = background[row - 1][col];
             }
         }
     }
