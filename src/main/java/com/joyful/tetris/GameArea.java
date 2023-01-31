@@ -4,9 +4,9 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GameArea extends JPanel { 
-    private final int gridCellSize;
-    private final int gridRows;
-    private final int gridColumns;
+    private final int cellSize;
+    private final int rowsNumber;
+    private final int columnsNumber;
     
     public GameArea(JPanel placeholder) {
         placeholder.setVisible(false);
@@ -14,17 +14,17 @@ public class GameArea extends JPanel {
         setBackground(placeholder.getBackground());
         setBorder(placeholder.getBorder());
         
-        gridColumns = 10;
-        gridCellSize = getBounds().width / gridColumns;
-        gridRows = getBounds().height / gridCellSize;
+        columnsNumber = 10;
+        cellSize = getBounds().width / columnsNumber;
+        rowsNumber = getBounds().height / cellSize;
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (int j = 0; j < gridRows; j++) {
-            for (int i = 0; i < gridColumns; i++) {
-                g.drawRect(i * gridCellSize, j * gridCellSize, gridCellSize, gridCellSize);            
+        for (int j = 0; j < rowsNumber; j++) {
+            for (int i = 0; i < columnsNumber; i++) {
+                g.drawRect(i * cellSize, j * cellSize, cellSize, cellSize);            
             }
         }
     }
