@@ -1,6 +1,5 @@
 package com.joyful.tetris;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -8,7 +7,8 @@ public class GameArea extends JPanel {
     public GameArea(JPanel placeholder) {
         placeholder.setVisible(false);
         setBounds(placeholder.getBounds());
-        setBackground(Color.RED);
+        setBackground(placeholder.getBackground());
+        setBorder(placeholder.getBorder());
     }
     
     @Override
