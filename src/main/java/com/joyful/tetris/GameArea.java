@@ -56,4 +56,9 @@ public class GameArea extends JPanel {
     private void spawnBlock() {
         block = new TetrisBlock(new int[][]{{1, 0}, {1, 0}, {1, 1}}, BLUE);
     }
+    
+    public void moveBlockDown() {
+        block.moveDown();
+        repaint();
+    }
 }
