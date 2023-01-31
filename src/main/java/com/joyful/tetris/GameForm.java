@@ -7,7 +7,7 @@ import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
-public class GameForm extends JFrame {
+public final class GameForm extends JFrame {
 
     private GameArea gameArea;
     
@@ -129,10 +129,8 @@ public class GameForm extends JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GameForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GameForm().setVisible(true);
         });
     }
 
