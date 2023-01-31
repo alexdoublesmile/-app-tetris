@@ -46,14 +46,14 @@ public class GameArea extends JPanel {
     }
     
     public void moveBlockRight() {
-        if (!checkRight()) {
+        if (checkRight()) {
             block.moveRight();
             repaint();
         }
     }
 
     public void moveBlockLeft() {
-        if (!checkLeft()) {
+        if (checkLeft()) {
             block.moveLeft();
             repaint();
         }
@@ -124,19 +124,53 @@ public class GameArea extends JPanel {
     }
     
     private boolean checkLeft() {
-        if (block.getLeftEdge() != 0) {
+        if (block.getLeftEdge() == 0) {
             return false;
-        } else {
-            return true;
+        } 
+        int[][] shape = block.getShape();
+        int width = block.getWidth();
+        int height = block.getHeight();
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                if (shape[row][col] != 0) {
+                    int x = col + block.getX() - 1;
+                    int y = row + block.getY();
+                    if (y < 0) {
+                        break;
+                    }
+                    if (background[y][x] != null) {
+                        return false;
+                    }
+                    break;
+                }
+            }
         }
+        return true;
     }
 
     private boolean checkRight() {
-        if (block.getRightEdge() != gridColumns) {
+        if (block.getRightEdge() == gridColumns) {
             return false;
-        } else {
-            return true;
         }
+        int[][] shape = block.getShape();
+        int width = block.getWidth();
+        int height = block.getHeight();
+        for (int row = 0; row < height; row++) {
+            for (int col = width - 1; col >= 0; col--) {
+                if (shape[row][col] != 0) {
+                    int x = col + block.getX() + 1;
+                    int y = row + block.getY();
+                    if (y < 0) {
+                        break;
+                    }
+                    if (background[y][x] != null) {
+                        return false;
+                    }
+                    break;
+                }
+            }
+        }
+        return true;
     }
 
     private void drawBackgrouond(Graphics g) {
