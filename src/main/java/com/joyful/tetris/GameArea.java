@@ -71,6 +71,7 @@ public class GameArea extends JPanel {
     
     public boolean isBlockOutOfBounds() {
         if (block.getY() < 0) {
+            block = null;
             return true;
         }
         return false;
@@ -87,6 +88,9 @@ public class GameArea extends JPanel {
     }
     
     public void moveBlockRight() {
+        if (block == null) {
+            return;
+        }
         if (checkRight()) {
             block.moveRight();
             repaint();
@@ -94,6 +98,9 @@ public class GameArea extends JPanel {
     }
 
     public void moveBlockLeft() {
+        if (block == null) {
+            return;
+        }
         if (checkLeft()) {
             block.moveLeft();
             repaint();
@@ -101,6 +108,9 @@ public class GameArea extends JPanel {
     }
 
     public void dropBlock() {
+        if (block == null) {
+            return;
+        }
         while(checkBottom()) {
             block.moveDown();
             repaint();
@@ -108,6 +118,9 @@ public class GameArea extends JPanel {
     }
 
     public void rotateBlock() {
+        if (block == null) {
+            return;
+        }
         block.rotate();
         repaint();
     }
