@@ -5,9 +5,12 @@ import java.util.logging.Logger;
 
 public class GameThread extends Thread {
 
+    private GameForm gameForm;
     private GameArea gameArea;
+    private int score;
     
-    public GameThread(GameArea gameArea) {
+    public GameThread(GameArea gameArea, GameForm gameForm) {
+        this.gameForm = gameForm;
         this.gameArea = gameArea;
         
     }
@@ -27,7 +30,8 @@ public class GameThread extends Thread {
                 break;
             }
             gameArea.moveBlockToBackground();
-            gameArea.clearLines();
+            score += gameArea.clearLines();
+            gameForm.updateScore(score);
         }
     }
     

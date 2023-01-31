@@ -47,6 +47,7 @@ public class GameArea extends JPanel {
                 }
             }
             if (lineFilled) {
+                linesCleared++;
                 clearLine(r);
                 shiftDown(r);
                 clearLine(0);
@@ -54,7 +55,7 @@ public class GameArea extends JPanel {
                 repaint();
             }
         }
-        return 
+        return linesCleared;
     }
     
     public void clearLine(int row) {

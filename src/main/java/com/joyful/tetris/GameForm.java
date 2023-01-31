@@ -21,7 +21,7 @@ public final class GameForm extends JFrame {
     }
     
     public void startGame(GameArea gameArea) {
-        new GameThread(gameArea).start();
+        new GameThread(gameArea, this).start();
     }
     
     public void updateScore(int score) {
