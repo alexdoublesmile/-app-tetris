@@ -9,6 +9,7 @@ public class GameArea extends JPanel {
     private final int cellSize;
     private final int rowsNumber;
     private final int columnsNumber;
+    private Color[]
     
     private TetrisBlock block;
     
