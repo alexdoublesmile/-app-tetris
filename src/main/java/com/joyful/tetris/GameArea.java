@@ -14,12 +14,16 @@ public class GameArea extends JPanel {
         setBackground(placeholder.getBackground());
         setBorder(placeholder.getBorder());
         
-        gridColumns = 
+        gridColumns = 10;
+        gridCellSize = getBounds().width / gridColumns;
+        gridRows = getBounds().height / gridCellSize;
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.fillRect(0, 0, 50, 50);
+        for (int i = 0; i < gridColumns; i++) {
+            g.drawRect(i * gridCellSize, 0, gridCellSize, gridCellSize);            
+        }
     }
 }
