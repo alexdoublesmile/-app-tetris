@@ -6,16 +6,17 @@
 
     <groupId>com.joyful</groupId>
     <artifactId>tetris</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
     <properties>
         <!-- Source -->
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <version-date>${maven.build.timestamp}</version-date>
         <maven.build.timestamp.format>dd-MM-yyyy HH:mm</maven.build.timestamp.format>
+        <exec.mainClass>com.joyful.tetris.Launcher</exec.mainClass>
     </properties>
 
     <build>
