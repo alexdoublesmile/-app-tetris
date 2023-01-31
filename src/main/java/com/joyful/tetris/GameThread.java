@@ -23,7 +23,11 @@ public class GameThread extends Thread {
                     Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (gameArea.is)
+            if (gameArea.isBlockOutOfBounds()) {
+                break;
+            }
+            gameArea.moveBlockToBackground();
+            gameArea.clearLines();
         }
     }
     

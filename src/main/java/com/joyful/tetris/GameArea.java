@@ -76,7 +76,7 @@ public class GameArea extends JPanel {
         return false;
     }
     
-    private void moveBlockToBackground() {
+    public void moveBlockToBackground() {
         for (int i = 0; i < block.getHeight(); i++) {
             for (int j = 0; j < block.getWidth(); j++) {
                 if (block.getShape()[i][j] == 1) {
@@ -134,8 +134,6 @@ public class GameArea extends JPanel {
     
     public boolean moveBlockDown() {
         if (!checkBottom()) {
-            moveBlockToBackground();
-            clearLines();
             return false;
         } else {
             block.moveDown();
