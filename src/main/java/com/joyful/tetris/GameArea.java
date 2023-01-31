@@ -5,8 +5,9 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GameArea extends JPanel { 
-    public GameArea() {
-        setBounds(0, 0, 100, 100);
+    public GameArea(JPanel placeholder) {
+        placeholder.setVisible(false);
+        setBounds(placeholder.getBounds());
         setBackground(Color.RED);
     }
     
