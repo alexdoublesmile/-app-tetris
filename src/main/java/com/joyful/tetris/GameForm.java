@@ -9,9 +9,11 @@ import javax.swing.KeyStroke;
 
 public class GameForm extends JFrame {
 
+    private GameArea gameArea;
+    
     public GameForm() {
         initComponents();
-        GameArea gameArea = new GameArea(gameAreaPlaceholder);
+        gameArea = new GameArea(gameAreaPlaceholder);
         add(gameArea);
         
         initControls();
@@ -34,21 +36,25 @@ public class GameForm extends JFrame {
         am.put("right", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                gameArea.moveBlockRight();
             }
         });
         am.put("left", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                gameArea.moveBlockLeft();
             }
         });
         am.put("down", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                gameArea.dropBlock();
             }
         });
         am.put("up", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                gameArea.rotateBlock();
             }
         });
     }

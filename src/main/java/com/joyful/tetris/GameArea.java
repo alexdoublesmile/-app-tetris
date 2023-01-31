@@ -44,6 +44,24 @@ public class GameArea extends JPanel {
             }
         }
     }
+    
+    public void moveBlockRight() {
+        block.moveRight();
+        repaint();
+    }
+
+    public void moveBlockLeft() {
+        block.moveLeft();
+        repaint();
+    }
+
+    public void dropBlock() {
+
+    }
+
+    public void rotateBlock() {
+
+    }
 
     private void drawBlock(Graphics g) {
         int[][] shape = block.getShape();
