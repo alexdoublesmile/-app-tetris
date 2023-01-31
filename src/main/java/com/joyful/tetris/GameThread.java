@@ -8,6 +8,8 @@ public class GameThread extends Thread {
     private GameForm gameForm;
     private GameArea gameArea;
     private int score;
+    private int level = 1;
+    private int scorePerLevel = 3;
     
     public GameThread(GameArea gameArea, GameForm gameForm) {
         this.gameForm = gameForm;
@@ -32,6 +34,12 @@ public class GameThread extends Thread {
             gameArea.moveBlockToBackground();
             score += gameArea.clearLines();
             gameForm.updateScore(score);
+            
+            int lvl = score / scorePerLevel + 1;
+            if (lvl > level) {
+                level = lvl;
+                gameForm.updateLevel(level);
+            }
         }
     }
     
