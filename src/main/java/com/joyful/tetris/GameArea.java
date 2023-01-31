@@ -56,7 +56,10 @@ public class GameArea extends JPanel {
     }
 
     public void dropBlock() {
-
+        while(!isBottom()) {
+            block.moveDown();
+        }
+        repaint();
     }
 
     public void rotateBlock() {
