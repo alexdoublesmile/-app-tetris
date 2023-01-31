@@ -15,11 +15,13 @@ public class GameThread extends Thread {
     @Override
     public void run() {
         while(true) {   
-            gameArea.moveBlockDown();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
+            gameArea.spawnBlock();
+            while(gameArea.moveBlockDown()) {   
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

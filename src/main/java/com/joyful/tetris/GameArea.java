@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 public class GameArea extends JPanel { 
     private final int cellSize;
-    private final int rowsNumber;
-    private final int columnsNumber;
+    private final int gridRows;
+    private final int gridColumns;
     private Color[][] background;
     
     private TetrisBlock block;
@@ -20,23 +20,17 @@ public class GameArea extends JPanel {
         setBackground(placeholder.getBackground());
         setBorder(placeholder.getBorder());
         
-        columnsNumber = 10;
-        cellSize = getBounds().width / columnsNumber;
-        rowsNumber = getBounds().height / cellSize;
+        gridColumns = 10;
+        cellSize = getBounds().width / gridColumns;
+        gridRows = getBounds().height / cellSize;
         
-        background = new Color[rowsNumber][columnsNumber];
-        spawnBlock();
+        background = new Color[gridRows][gridColumns];
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        for (int j = 0; j < rowsNumber; j++) {
-//            for (int i = 0; i < columnsNumber; i++) {
-//                g.drawRect(i * cellSize, j * cellSize, cellSize, cellSize);            
-//            }
-//        }
-
+        
         drawBackgrouond(g);
         drawBlock(g);
     }
@@ -59,35 +53,39 @@ public class GameArea extends JPanel {
                 if (shape[row][col] == 1) {
                     int x = (block.getX() + col) * cellSize;
                     int y = (block.getY() + row) * cellSize;
-                    g.setColor(block.getColor());
-                    drawGridSquare(g, block.getColor(), cellSize, cellSize);
+
+                    drawGridSquare(g, block.getColor(), x, y);
                 }
             }            
         }
     }
 
-    private void spawnBlock() {
+    public void spawnBlock() {
         block = new TetrisBlock(new int[][]{{1, 0}, {1, 0}, {1, 1}}, BLUE);
-        block.spawn(columnsNumber);
+        block.spawn(gridColumns);
     }
     
-    public void moveBlockDown() {
-        if (!isBottom()) {
+    public boolean moveBlockDown() {
+        if (isBottom()) {
+            moveBlockToBackground();
+            return false;
+        } else {
             block.moveDown();
             repaint();
+            return true;
         }
     }
 
     private boolean isBottom() {
-        return block.getBottomCoord() >= rowsNumber; 
+        return block.getBottomCoord() == gridRows; 
     }
 
     private void drawBackgrouond(Graphics g) {
-        for (int i = 0; i < rowsNumber; i++) {
-            for (int j = 0; j < columnsNumber; j++) {
+        for (int i = 0; i < gridRows; i++) {
+            for (int j = 0; j < gridColumns; j++) {
                 Color color = background[i][j];
                 if (color != null) {
-                    drawGridSquare(g, color, i * cellSize, j * cellSize);
+                    drawGridSquare(g, color, j * cellSize, i * cellSize);
                 }
             }
         }
