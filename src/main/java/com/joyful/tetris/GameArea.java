@@ -35,8 +35,9 @@ public class GameArea extends JPanel {
         drawBlock(g);
     }
     
-    public void clearLines() {
+    public int clearLines() {
         boolean lineFilled;
+        int linesCleared = 0;
         for (int r = gridRows - 1; r >= 0; r--) {
             lineFilled = true;
             for (int c = 0; c < gridColumns; c++) {
@@ -53,6 +54,7 @@ public class GameArea extends JPanel {
                 repaint();
             }
         }
+        return 
     }
     
     public void clearLine(int row) {
