@@ -49,6 +49,7 @@ public class GameArea extends JPanel {
                 clearLine(r);
                 shiftDown(r);
                 clearLine(0);
+                r++;
                 repaint();
             }
         }
@@ -66,6 +67,13 @@ public class GameArea extends JPanel {
                 background[row][col] = background[row - 1][col];
             }
         }
+    }
+    
+    public boolean isBlockOutOfBounds() {
+        if (block.getY() < 0) {
+            return true;
+        }
+        return false;
     }
     
     private void moveBlockToBackground() {
