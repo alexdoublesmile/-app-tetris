@@ -8,6 +8,8 @@ public class GameArea extends JPanel {
     private final int rowsNumber;
     private final int columnsNumber;
     
+    private int[][] block = {{1, 0}, {1, 0}, {1, 1}};
+    
     public GameArea(JPanel placeholder) {
         placeholder.setVisible(false);
         setBounds(placeholder.getBounds());
@@ -26,6 +28,17 @@ public class GameArea extends JPanel {
             for (int i = 0; i < columnsNumber; i++) {
                 g.drawRect(i * cellSize, j * cellSize, cellSize, cellSize);            
             }
+        }
+        drawBlock(g);
+    }
+
+    private void drawBlock(Graphics g) {
+        for (int row = 0; row < block.length; row++) {
+            for (int col = 0; col < block[0].length; col++) {
+                if (block[row][col] == 1) {
+                    g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                }
+            }            
         }
     }
 }
