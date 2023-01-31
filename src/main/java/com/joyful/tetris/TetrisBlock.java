@@ -53,4 +53,8 @@ public class TetrisBlock {
     public void moveRight() {
         x++;
     }
+    
+    public int getBottomCoord() {
+        return y + getHeight();
+    }
 }

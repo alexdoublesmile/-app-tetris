@@ -59,7 +59,13 @@ public class GameArea extends JPanel {
     }
     
     public void moveBlockDown() {
-        block.moveDown();
-        repaint();
+        if (!isBottom()) {
+            block.moveDown();
+            repaint();
+        }
+    }
+
+    private boolean isBottom() {
+        return block.getBottomCoord() >= rowsNumber; 
     }
 }
