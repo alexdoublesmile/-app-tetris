@@ -23,6 +23,14 @@ public final class GameForm extends JFrame {
     public void startGame(GameArea gameArea) {
         new GameThread(gameArea).start();
     }
+    
+    public void updateScore(int score) {
+        scoreDisplay.setText("Score: " + score);
+    }
+
+    public void updateLevel(int level) {
+        levelDisplay.setText("Level: " + level);
+    }
 
     private void initControls() {
         InputMap im = getRootPane().getInputMap();
