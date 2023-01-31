@@ -1,5 +1,7 @@
 package com.joyful.tetris;
 
+import static java.awt.Color.BLACK;
+import static java.awt.Color.RED;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -24,11 +26,11 @@ public class GameArea extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (int j = 0; j < rowsNumber; j++) {
-            for (int i = 0; i < columnsNumber; i++) {
-                g.drawRect(i * cellSize, j * cellSize, cellSize, cellSize);            
-            }
-        }
+//        for (int j = 0; j < rowsNumber; j++) {
+//            for (int i = 0; i < columnsNumber; i++) {
+//                g.drawRect(i * cellSize, j * cellSize, cellSize, cellSize);            
+//            }
+//        }
         drawBlock(g);
     }
 
@@ -36,7 +38,10 @@ public class GameArea extends JPanel {
         for (int row = 0; row < block.length; row++) {
             for (int col = 0; col < block[0].length; col++) {
                 if (block[row][col] == 1) {
+                    g.setColor(RED);
                     g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                    g.setColor(BLACK);
+                    g.drawRect(col * cellSize, row * cellSize, cellSize, cellSize);
                 }
             }            
         }
