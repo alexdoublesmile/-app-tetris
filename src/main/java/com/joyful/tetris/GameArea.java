@@ -1,7 +1,7 @@
 package com.joyful.tetris;
 
 import static java.awt.Color.BLACK;
-import static java.awt.Color.RED;
+import static java.awt.Color.BLUE;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -10,7 +10,7 @@ public class GameArea extends JPanel {
     private final int rowsNumber;
     private final int columnsNumber;
     
-    private int[][] block = {{1, 0}, {1, 0}, {1, 1}};
+    private TetrisBlock block;
     
     public GameArea(JPanel placeholder) {
         placeholder.setVisible(false);
@@ -21,6 +21,8 @@ public class GameArea extends JPanel {
         columnsNumber = 10;
         cellSize = getBounds().width / columnsNumber;
         rowsNumber = getBounds().height / cellSize;
+        
+        spawnBlock();
     }
     
     @Override
@@ -35,15 +37,19 @@ public class GameArea extends JPanel {
     }
 
     private void drawBlock(Graphics g) {
-        for (int row = 0; row < block.length; row++) {
-            for (int col = 0; col < block[0].length; col++) {
-                if (block[row][col] == 1) {
-                    g.setColor(RED);
+        for (int row = 0; row < block.getHeight(); row++) {
+            for (int col = 0; col < block.getWidth(); col++) {
+                if (block.getShape()[row][col] == 1) {
+                    g.setColor(block.getColor());
                     g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
                     g.setColor(BLACK);
                     g.drawRect(col * cellSize, row * cellSize, cellSize, cellSize);
                 }
             }            
         }
+    }
+
+    private void spawnBlock() {
+        block = new TetrisBlock(new int[][]{{1, 0}, {1, 0}, {1, 1}}, BLUE);
     }
 }
