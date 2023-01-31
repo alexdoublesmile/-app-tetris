@@ -40,6 +40,16 @@ public class GameArea extends JPanel {
         drawBackgrouond(g);
         drawBlock(g);
     }
+    
+    private void moveBlockToBackground() {
+        for (int i = 0; i < block.getHeight(); i++) {
+            for (int j = 0; j < block.getWidth(); j++) {
+                if (block.getShape()[i][j] == 1) {
+                    background[i + block.getY()][j + block.getX()] = block.getColor();
+                }
+            }
+        }
+    }
 
     private void drawBlock(Graphics g) {
         int[][] shape = block.getShape();
@@ -50,7 +60,7 @@ public class GameArea extends JPanel {
                     int x = (block.getX() + col) * cellSize;
                     int y = (block.getY() + row) * cellSize;
                     g.setColor(block.getColor());
-                    drawGridSquare(g, color)
+                    drawGridSquare(g, block.getColor(), cellSize, cellSize);
                 }
             }            
         }
