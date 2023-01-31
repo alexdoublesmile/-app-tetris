@@ -46,20 +46,24 @@ public class GameArea extends JPanel {
     }
     
     public void moveBlockRight() {
-        block.moveRight();
-        repaint();
+        if (!isRightEdge()) {
+            block.moveRight();
+            repaint();
+        }
     }
 
     public void moveBlockLeft() {
-        block.moveLeft();
-        repaint();
+        if (!isLeftEdge()) {
+            block.moveLeft();
+            repaint();
+        }
     }
 
     public void dropBlock() {
         while(!isBottom()) {
             block.moveDown();
+            repaint();
         }
-        repaint();
     }
 
     public void rotateBlock() {
@@ -100,6 +104,14 @@ public class GameArea extends JPanel {
 
     private boolean isBottom() {
         return block.getBottomCoord() == gridRows; 
+    }
+    
+    private boolean isLeftEdge() {
+        return block.getLeftEdge() == 0;
+    }
+
+    private boolean isRightEdge() {
+        return block.getRightEdge() == gridColumns;
     }
 
     private void drawBackgrouond(Graphics g) {

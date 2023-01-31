@@ -84,4 +84,12 @@ public class TetrisBlock {
     public int getBottomCoord() {
         return y + getHeight();
     }
+
+    public int getLeftEdge() {
+        return x;
+    }
+
+    public int getRightEdge() {
+        return x + getWidth();
+    }
 }
