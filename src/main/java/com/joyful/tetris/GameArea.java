@@ -89,7 +89,7 @@ public class GameArea extends JPanel {
     
     public boolean isBlockOutOfBounds() {
         if (block.getY() < 0) {
-            block = null;
+//            block = null;
             return true;
         }
         return false;
@@ -203,10 +203,8 @@ public class GameArea extends JPanel {
             block = blocks[random.nextInt(blocks.length)];
             block.spawn(gridColumns, previousColor);
         } else {
-//            previousColor = block.getColor();
             block = nextBlock;
-        }
-        
+        }        
         do {
             nextBlock = blocks[random.nextInt(blocks.length)];
         } while (Arrays.deepEquals(nextBlock.getShape(), block.getShape()));
