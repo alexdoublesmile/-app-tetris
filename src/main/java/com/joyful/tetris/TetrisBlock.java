@@ -35,8 +35,8 @@ public class TetrisBlock {
     
     public void spawn(int gridWidth) {
         Random random = new Random();
-        currentRotation = 0;
-        shape = shapes[0];
+        currentRotation = random.nextInt(shapes.length);
+        shape = shapes[currentRotation];
         
         y = -getHeight();
         x = random.nextInt(gridWidth - getWidth());
