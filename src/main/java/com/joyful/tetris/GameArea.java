@@ -1,8 +1,10 @@
 package com.joyful.tetris;
 
+import com.joyful.tetris.block.*;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import java.awt.Graphics;
+import java.util.Random;
 import javax.swing.JPanel;
 
 public class GameArea extends JPanel { 
@@ -12,6 +14,7 @@ public class GameArea extends JPanel {
     private Color[][] background;
     
     private TetrisBlock block;
+    private TetrisBlock[] blocks;
     
     public GameArea(JPanel placeholder) {
         placeholder.setVisible(false);
@@ -24,6 +27,15 @@ public class GameArea extends JPanel {
         gridRows = getBounds().height / cellSize;
         
         background = new Color[gridRows][gridColumns];
+        blocks = new TetrisBlock[]{
+            new IShape(),
+            new JShape(),
+            new LShape(),
+            new OShape(),
+            new SShape(),
+            new TShape(),
+            new ZShape()
+        };
     }
     
     @Override
@@ -143,7 +155,8 @@ public class GameArea extends JPanel {
     }
 
     public void spawnBlock() {
-        block = new TetrisBlock(new int[][]{{1, 0}, {1, 0}, {1, 1}});
+        Random random = new Random();
+        block = blocks[random.nextInt(blocks.length)];
         block.spawn(gridColumns);
     }
     
