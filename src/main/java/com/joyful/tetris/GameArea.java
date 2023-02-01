@@ -4,6 +4,7 @@ import com.joyful.tetris.block.*;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import java.awt.Graphics;
+import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JPanel;
 
@@ -13,6 +14,7 @@ public class GameArea extends JPanel {
     private final int gridColumns;
     private Color[][] background;
     
+    private TetrisBlock nextBlock;
     private TetrisBlock block;
     private TetrisBlock[] blocks;
     
@@ -170,7 +172,6 @@ public class GameArea extends JPanel {
             }
         }
 
-        
         repaint();
     }
 
@@ -191,8 +192,18 @@ public class GameArea extends JPanel {
 
     public void spawnBlock() {
         Random random = new Random();
-        block = blocks[random.nextInt(blocks.length)];
-        block.spawn(gridColumns);
+        Color previousColor = null;
+        if (block == null) {
+            block = blocks[random.nextInt(blocks.length)];
+        } else {
+            previousColor = block.getColor();
+            block = nextBlock;
+        }
+        block.spawn(gridColumns, previousColor);
+        
+        do {
+            nextBlock = blocks[random.nextInt(blocks.length)];
+        } while (Arrays.deepEquals(nextBlock.getShape(), block.getShape()));
     }
     
     public boolean moveBlockDown() {

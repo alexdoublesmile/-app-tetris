@@ -37,14 +37,16 @@ public class TetrisBlock {
         }
     }
     
-    public void spawn(int gridWidth) {
+    public void spawn(int gridWidth, Color previousColor) {
         Random random = new Random();
         currentRotation = random.nextInt(shapes.length);
         shape = shapes[currentRotation];
         
         y = -getHeight();
         x = random.nextInt(gridWidth - getWidth());
-        color = availableColors[random.nextInt(availableColors.length)];
+        do {
+            color = availableColors[random.nextInt(availableColors.length)];
+        } while (color.equals(previousColor));
     }
 
     public int[][] getShape() {
