@@ -5,21 +5,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class LeaderboardForm extends javax.swing.JFrame {
     private static final String leaderboardFilename = "leaderboard";
 
     private DefaultTableModel model;
+    private TableRowSorter<DefaultTableModel> sorter;
     
     public LeaderboardForm() {
         initComponents();
         initTableData();
+        initTableSorter();
     }
 
     @SuppressWarnings("unchecked")
@@ -151,13 +156,13 @@ public class LeaderboardForm extends javax.swing.JFrame {
         
         model = (DefaultTableModel) leaderboard.getModel();
         
-        if (Files.notExists(Path.of(leaderboardFilename))) {
-            try {
-                Files.createFile(Path.of(leaderboardFilename));
-            } catch (IOException ex) {
-                Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        if (Files.notExists(Path.of(leaderboardFilename))) {
+//            try {
+//                Files.createFile(Path.of(leaderboardFilename));
+//            } catch (IOException ex) {
+//                Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
         
         try (FileInputStream fis = new FileInputStream(leaderboardFilename); 
                 ObjectInputStream ois = new ObjectInputStream(fis)) {
@@ -176,5 +181,13 @@ public class LeaderboardForm extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void initTableSorter() {
+        sorter = new TableRowSorter<>(model);
+        leaderboard.setRowSorter(sorter);
+        
+        List<SortKey> keys = new ArrayList<>();
+        keys.add(new SortKey(1, SortOrder.))''
     }
 }
