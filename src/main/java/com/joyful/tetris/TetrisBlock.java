@@ -14,6 +14,7 @@ public class TetrisBlock {
     private int currentRotation;
     private Color color;
     private Color[] availableColors = {GREEN, RED, BLUE};
+    private int shift;
 
     public TetrisBlock(int[][] shape) {
         this.shape = shape;
@@ -106,5 +107,19 @@ public class TetrisBlock {
     public void setY(int y) {
         this.y = y;
     }
-    
+
+    void unrotate() {
+        rotate();
+        rotate();
+        rotate();
+    }
+
+    void saveShift(int newX) {
+        shift = x - newX;
+    }
+
+    void unshift() {
+        x += shift;
+        shift = 0;
+    }
 }

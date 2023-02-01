@@ -137,15 +137,39 @@ public class GameArea extends JPanel {
         }
         block.rotate();
         
+        // prevent sides or bottom rotation
         if (block.getLeftEdge() < 0) {
+            block.saveShift(0);
             block.setX(0);
-        }
-        if (block.getRightEdge() >= gridColumns) {
-            block.setX(gridColumns - block.getWidth());
         }
         if (block.getBottomCoord() >= gridRows) {
             block.setY(gridRows - block.getHeight());
         }
+        if (block.getRightEdge() >= gridColumns) {
+            int newX = gridColumns - block.getWidth();
+            block.saveShift(newX);
+            block.setX(newX);
+        }
+        
+        // prevent background rotation
+        for (int row = 0; row < block.getHeight(); row++) {
+            for (int col = 0; col < block.getWidth(); col++) {
+                int gridRow = (block.getY() + row);
+                int gridColumn = (block.getX() + col);
+                
+                // break if under screen
+                if (gridRow < 0) {
+                    break;
+                }
+                if (block.getShape()[row][col] != 0 
+                        && background[gridRow][gridColumn] != null) {
+                        block.unrotate();
+                        block.unshift();
+                        return;
+                }
+            }
+        }
+
         
         repaint();
     }
