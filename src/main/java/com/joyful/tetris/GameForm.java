@@ -11,6 +11,7 @@ public final class GameForm extends JFrame {
 
     private final GameArea gameArea;
     private final MiniPanel miniPanel;
+    private GameThread gameThread;
     
     public GameForm() {
         initComponents();
@@ -27,7 +28,8 @@ public final class GameForm extends JFrame {
     }
     
     public void startGame() {
-        new GameThread(gameArea, this).start();
+        gameThread = new GameThread(gameArea, this);
+        gameThread.start();
     }
     
     public void updateScore(int score) {
@@ -168,6 +170,7 @@ public final class GameForm extends JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setVisible(false);
         Launcher.showStartup();
+        gameThread.interrupt();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {

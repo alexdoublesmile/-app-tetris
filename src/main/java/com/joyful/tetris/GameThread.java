@@ -1,8 +1,5 @@
 package com.joyful.tetris;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class GameThread extends Thread {
 
     private GameForm gameForm;
@@ -27,7 +24,8 @@ public class GameThread extends Thread {
                 try {
                     Thread.sleep(pause);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
+//                    Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (gameArea.isBlockOutOfBounds()) {
