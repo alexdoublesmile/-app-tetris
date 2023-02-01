@@ -122,6 +122,7 @@ public final class GameForm extends JFrame {
         );
 
         jButton1.setText("Main Menu");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
