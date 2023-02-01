@@ -30,7 +30,6 @@ public class GameArea extends JPanel {
         cellSize = getBounds().width / gridColumns;
         gridRows = getBounds().height / cellSize;
         
-        background = new Color[gridRows][gridColumns];
         blocks = new TetrisBlock[]{
             new IShape(),
             new JShape(),
@@ -314,6 +313,10 @@ public class GameArea extends JPanel {
 
     public void setMiniPanel(JPanel miniPanel) {
         this.miniPanel = miniPanel;
+    }
+
+    void initBackground() {
+        background = new Color[gridRows][gridColumns];
     }
     
 }

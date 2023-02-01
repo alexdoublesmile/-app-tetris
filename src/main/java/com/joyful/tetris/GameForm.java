@@ -28,6 +28,7 @@ public final class GameForm extends JFrame {
     }
     
     public void startGame() {
+        gameArea.initBackground();
         gameThread = new GameThread(gameArea, this);
         gameThread.start();
     }
