@@ -52,7 +52,12 @@ public class LeaderboardForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        leaderboard.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(leaderboard);
+        if (leaderboard.getColumnModel().getColumnCount() > 0) {
+            leaderboard.getColumnModel().getColumn(0).setResizable(false);
+            leaderboard.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
