@@ -9,6 +9,8 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 public class GameArea extends JPanel { 
+    private JPanel miniPanel;
+    
     private final int cellSize;
     private final int gridRows;
     private final int gridColumns;
@@ -91,6 +93,10 @@ public class GameArea extends JPanel {
             return true;
         }
         return false;
+    }
+
+    public TetrisBlock getNextBlock() {
+        return nextBlock;
     }
     
     public void moveBlockToBackground() {
@@ -195,15 +201,18 @@ public class GameArea extends JPanel {
         Color previousColor = null;
         if (block == null) {
             block = blocks[random.nextInt(blocks.length)];
+            block.spawn(gridColumns, previousColor);
         } else {
-            previousColor = block.getColor();
+//            previousColor = block.getColor();
             block = nextBlock;
         }
-        block.spawn(gridColumns, previousColor);
         
         do {
             nextBlock = blocks[random.nextInt(blocks.length)];
         } while (Arrays.deepEquals(nextBlock.getShape(), block.getShape()));
+        nextBlock.spawn(gridColumns, block.getColor());
+        
+        miniPanel.repaint();
     }
     
     public boolean moveBlockDown() {
@@ -304,4 +313,9 @@ public class GameArea extends JPanel {
         g.setColor(BLACK);
         g.drawRect(x, y, cellSize, cellSize);
     }
+
+    public void setMiniPanel(JPanel miniPanel) {
+        this.miniPanel = miniPanel;
+    }
+    
 }

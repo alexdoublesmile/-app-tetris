@@ -10,11 +10,17 @@ import javax.swing.KeyStroke;
 public final class GameForm extends JFrame {
 
     private final GameArea gameArea;
+    private final MiniPanel miniPanel;
     
     public GameForm() {
         initComponents();
+        
         gameArea = new GameArea(gameAreaPlaceholder);
+        miniPanel = new MiniPanel(gameArea, nextShapePanel);
+        gameArea.setMiniPanel(miniPanel);
+        
         add(gameArea);
+        add(miniPanel);
         
         initControls();
         startGame(gameArea);
@@ -74,6 +80,7 @@ public final class GameForm extends JFrame {
         gameAreaPlaceholder = new javax.swing.JPanel();
         scoreDisplay = new javax.swing.JLabel();
         levelDisplay = new javax.swing.JLabel();
+        nextShapePanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tetris");
@@ -99,6 +106,20 @@ public final class GameForm extends JFrame {
         levelDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         levelDisplay.setText("Level: 1");
 
+        nextShapePanel.setBackground(new java.awt.Color(238, 238, 238));
+        nextShapePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout nextShapePanelLayout = new javax.swing.GroupLayout(nextShapePanel);
+        nextShapePanel.setLayout(nextShapePanelLayout);
+        nextShapePanelLayout.setHorizontalGroup(
+            nextShapePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+        nextShapePanelLayout.setVerticalGroup(
+            nextShapePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,10 +128,12 @@ public final class GameForm extends JFrame {
                 .addContainerGap(157, Short.MAX_VALUE)
                 .addComponent(gameAreaPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scoreDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(levelDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(62, 62, 62))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(scoreDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(levelDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nextShapePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +143,9 @@ public final class GameForm extends JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(scoreDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(levelDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(levelDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nextShapePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(gameAreaPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -162,6 +187,7 @@ public final class GameForm extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel gameAreaPlaceholder;
     private javax.swing.JLabel levelDisplay;
+    private javax.swing.JPanel nextShapePanel;
     private javax.swing.JLabel scoreDisplay;
     // End of variables declaration//GEN-END:variables
 }

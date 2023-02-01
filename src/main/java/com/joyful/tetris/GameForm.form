@@ -29,11 +29,14 @@
               <EmptySpace pref="157" max="32767" attributes="0"/>
               <Component id="gameAreaPlaceholder" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="scoreDisplay" max="32767" attributes="0"/>
-                  <Component id="levelDisplay" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="scoreDisplay" max="32767" attributes="0"/>
+                      <Component id="levelDisplay" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="nextShapePanel" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,6 +49,8 @@
                       <Component id="scoreDisplay" min="-2" pref="22" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="levelDisplay" min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="nextShapePanel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="gameAreaPlaceholder" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -96,5 +101,30 @@
         <Property name="text" type="java.lang.String" value="Level: 1"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JPanel" name="nextShapePanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ee" green="ee" red="ee" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
   </SubComponents>
 </Form>

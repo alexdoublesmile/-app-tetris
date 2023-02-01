@@ -124,4 +124,12 @@ public class TetrisBlock {
         x += shift;
         shift = 0;
     }
+
+    public int[][][] getShapes() {
+        return shapes;
+    }
+
+    public int getCurrentRotation() {
+        return currentRotation;
+    }
 }
