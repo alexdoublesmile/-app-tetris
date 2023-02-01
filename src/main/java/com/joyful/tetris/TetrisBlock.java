@@ -1,6 +1,7 @@
 package com.joyful.tetris;
 
 import java.awt.Color;
+import java.util.Random;
 
 public class TetrisBlock {
     private int x;
@@ -33,11 +34,12 @@ public class TetrisBlock {
     }
     
     public void spawn(int gridWidth) {
+        Random random = new Random();
         currentRotation = 0;
         shape = shapes[0];
         
         y = -getHeight();
-        x = (gridWidth - getWidth()) / 2;
+        x = random.nextInt(gridWidth - getWidth());
     }
 
     public int[][] getShape() {
