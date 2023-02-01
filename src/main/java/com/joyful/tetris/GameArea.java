@@ -136,6 +136,17 @@ public class GameArea extends JPanel {
             return;
         }
         block.rotate();
+        
+        if (block.getLeftEdge() < 0) {
+            block.setX(0);
+        }
+        if (block.getRightEdge() >= gridColumns) {
+            block.setX(gridColumns - block.getWidth());
+        }
+        if (block.getBottomCoord() >= gridRows) {
+            block.setY(gridRows - block.getHeight());
+        }
+        
         repaint();
     }
 
