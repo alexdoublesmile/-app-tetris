@@ -23,10 +23,10 @@ public final class GameForm extends JFrame {
         add(miniPanel);
         
         initControls();
-        startGame(gameArea);
+//        startGame(gameArea);
     }
     
-    public void startGame(GameArea gameArea) {
+    public void startGame() {
         new GameThread(gameArea, this).start();
     }
     
