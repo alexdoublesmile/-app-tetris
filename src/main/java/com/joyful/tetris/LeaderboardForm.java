@@ -145,7 +145,10 @@ public class LeaderboardForm extends javax.swing.JFrame {
 
     void addPlayer(String playerName, int score) {
         model.addRow(new Object[] {playerName, score});
+        sorter.sort();
+        
         saveLeaderboard();
+        
         setVisible(true);
     }
 
@@ -188,6 +191,8 @@ public class LeaderboardForm extends javax.swing.JFrame {
         leaderboard.setRowSorter(sorter);
         
         List<SortKey> keys = new ArrayList<>();
-        keys.add(new SortKey(1, SortOrder.))''
+        keys.add(new SortKey(1, SortOrder.DESCENDING));
+        
+        sorter.setSortKeys(keys);
     }
 }
