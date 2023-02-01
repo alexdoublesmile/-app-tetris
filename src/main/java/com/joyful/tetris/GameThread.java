@@ -31,6 +31,7 @@ public class GameThread extends Thread {
                 }
             }
             if (gameArea.isBlockOutOfBounds()) {
+                Launcher.gameOver(score);
                 break;
             }
             gameArea.moveBlockToBackground();

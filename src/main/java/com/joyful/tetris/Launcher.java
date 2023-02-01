@@ -1,5 +1,7 @@
 package com.joyful.tetris;
 
+import javax.swing.JOptionPane;
+
 public class Launcher {
     private static GameForm gameForm;
     private static LeaderboardForm leaderboardForm;
@@ -26,5 +28,11 @@ public class Launcher {
             
             startupForm.setVisible(true);
         });
+    }
+
+    public static void gameOver(int score) {
+        String playerName = JOptionPane.showInputDialog( "Game Over!\nPlease enter your name.");
+        gameForm.setVisible(false);
+        leaderboardForm.addPlayer(playerName, score);
     }
 }
