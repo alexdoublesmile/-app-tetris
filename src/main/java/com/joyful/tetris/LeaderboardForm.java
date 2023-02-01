@@ -1,8 +1,14 @@
 package com.joyful.tetris;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class LeaderboardForm extends javax.swing.JFrame {
+    private static final String leaderboardFilename = "leaderboard";
 
     private DefaultTableModel model;
     
@@ -129,10 +135,21 @@ public class LeaderboardForm extends javax.swing.JFrame {
 
     void addPlayer(String playerName, int score) {
         model.addRow(new Object[] {playerName, score});
+        saveLeaderboard();
         setVisible(true);
     }
 
     private void initTableData() {
         model = (DefaultTableModel) leaderboard.getModel();
+    }
+
+    private void saveLeaderboard() {
+        try (FileOutputStream fos = new FileOutputStream(leaderboardFilename); 
+                ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.write(model.getDataVector());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
