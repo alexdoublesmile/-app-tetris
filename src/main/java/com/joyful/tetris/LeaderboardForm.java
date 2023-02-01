@@ -1,8 +1,13 @@
 package com.joyful.tetris;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -140,13 +145,33 @@ public class LeaderboardForm extends javax.swing.JFrame {
     }
 
     private void initTableData() {
+        Vector columnIdentifiers = new Vector();
+        columnIdentifiers.add("Player");
+        columnIdentifiers.add("Score");
+        
         model = (DefaultTableModel) leaderboard.getModel();
+        
+        if (Files.notExists(Path.of(leaderboardFilename))) {
+            try {
+                Files.createFile(Path.of(leaderboardFilename));
+            } catch (IOException ex) {
+                Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        try (FileInputStream fis = new FileInputStream(leaderboardFilename); 
+                ObjectInputStream ois = new ObjectInputStream(fis)) {
+            model.setDataVector((Vector<? extends Vector>) ois.readObject(), columnIdentifiers);
+
+        } catch (Exception ex) {
+            Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void saveLeaderboard() {
         try (FileOutputStream fos = new FileOutputStream(leaderboardFilename); 
                 ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.write(model.getDataVector());
+            oos.writeObject(model.getDataVector());
             
         } catch (IOException ex) {
             Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
