@@ -14,6 +14,8 @@ public class GameThread extends Thread {
         this.gameForm = gameForm;
         this.gameArea = gameArea;
         
+        gameForm.updateScore(score);
+        gameForm.updateLevel(level);
     }
 
     @Override
