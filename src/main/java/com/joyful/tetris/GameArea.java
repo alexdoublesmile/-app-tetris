@@ -21,7 +21,7 @@ public class GameArea extends JPanel {
     private TetrisBlock[] blocks;
     
     public GameArea(JPanel placeholder) {
-        placeholder.setVisible(false);
+//        placeholder.setVisible(false);
         setBounds(placeholder.getBounds());
         setBackground(placeholder.getBackground());
         setBorder(placeholder.getBorder());
