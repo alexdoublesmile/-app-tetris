@@ -2,7 +2,6 @@ package com.joyful.tetris;
 
 import java.awt.Color;
 import static java.awt.Color.BLACK;
-import static java.awt.Color.BLUE;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -144,7 +143,7 @@ public class GameArea extends JPanel {
     }
 
     public void spawnBlock() {
-        block = new TetrisBlock(new int[][]{{1, 0}, {1, 0}, {1, 1}}, BLUE);
+        block = new TetrisBlock(new int[][]{{1, 0}, {1, 0}, {1, 1}});
         block.spawn(gridColumns);
     }
     
