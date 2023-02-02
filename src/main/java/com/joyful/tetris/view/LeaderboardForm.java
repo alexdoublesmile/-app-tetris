@@ -26,6 +26,24 @@ public class LeaderboardForm extends javax.swing.JFrame {
         initComponents();
         initTableData();
         initTableSorter();
+    }   
+    
+    public void addPlayer(String playerName, int score) {
+        model.addRow(new Object[]{playerName, score});
+        sorter.sort();
+
+        saveLeaderboard();
+
+        setVisible(true);
+    }
+
+    private void saveLeaderboard() {
+        try (FileOutputStream fos = new FileOutputStream(leaderboardFilename); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(model.getDataVector());
+
+        } catch (IOException ex) {
+            Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -144,45 +162,17 @@ public class LeaderboardForm extends javax.swing.JFrame {
     private javax.swing.JTable leaderboard;
     // End of variables declaration//GEN-END:variables
 
-    public void addPlayer(String playerName, int score) {
-        model.addRow(new Object[] {playerName, score});
-        sorter.sort();
-        
-        saveLeaderboard();
-        
-        setVisible(true);
-    }
-
     private void initTableData() {
         Vector columnIdentifiers = new Vector();
         columnIdentifiers.add("Player");
         columnIdentifiers.add("Score");
-        
+
         model = (DefaultTableModel) leaderboard.getModel();
-        
-//        if (Files.notExists(Path.of(leaderboardFilename))) {
-//            try {
-//                Files.createFile(Path.of(leaderboardFilename));
-//            } catch (IOException ex) {
-//                Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-        
-        try (FileInputStream fis = new FileInputStream(leaderboardFilename); 
-                ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+        try (FileInputStream fis = new FileInputStream(leaderboardFilename); ObjectInputStream ois = new ObjectInputStream(fis)) {
             model.setDataVector((Vector<? extends Vector>) ois.readObject(), columnIdentifiers);
 
         } catch (Exception ex) {
-            Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void saveLeaderboard() {
-        try (FileOutputStream fos = new FileOutputStream(leaderboardFilename); 
-                ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.writeObject(model.getDataVector());
-            
-        } catch (IOException ex) {
             Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

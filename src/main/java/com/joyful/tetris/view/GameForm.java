@@ -2,6 +2,8 @@ package com.joyful.tetris.view;
 
 import com.joyful.tetris.Launcher;
 import com.joyful.tetris.service.GameThread;
+import com.joyful.tetris.view.panel.GameArea;
+import com.joyful.tetris.view.panel.MiniPanel;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -10,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
 public final class GameForm extends JFrame {
-
     private final GameArea gameArea;
     private final MiniPanel miniPanel;
     private GameThread gameThread;
@@ -19,18 +20,18 @@ public final class GameForm extends JFrame {
         initComponents();
         
         gameArea = new GameArea(gameAreaPlaceholder);
-        miniPanel = new MiniPanel(gameArea, nextShapePanel);
+        miniPanel = new MiniPanel(gameArea, miniPanelPlaceholder);
         gameArea.setMiniPanel(miniPanel);
         
         add(gameArea);
         add(miniPanel);
         
         initControls();
-//        startGame(gameArea);
     }
     
     public void startGame() {
         gameArea.initBackground();
+        
         gameThread = new GameThread(gameArea, this);
         gameThread.start();
     }
@@ -85,7 +86,7 @@ public final class GameForm extends JFrame {
         gameAreaPlaceholder = new javax.swing.JPanel();
         scoreDisplay = new javax.swing.JLabel();
         levelDisplay = new javax.swing.JLabel();
-        nextShapePanel = new javax.swing.JPanel();
+        miniPanelPlaceholder = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,14 +113,14 @@ public final class GameForm extends JFrame {
         levelDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         levelDisplay.setText("Level: 1");
 
-        javax.swing.GroupLayout nextShapePanelLayout = new javax.swing.GroupLayout(nextShapePanel);
-        nextShapePanel.setLayout(nextShapePanelLayout);
-        nextShapePanelLayout.setHorizontalGroup(
-            nextShapePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout miniPanelPlaceholderLayout = new javax.swing.GroupLayout(miniPanelPlaceholder);
+        miniPanelPlaceholder.setLayout(miniPanelPlaceholderLayout);
+        miniPanelPlaceholderLayout.setHorizontalGroup(
+            miniPanelPlaceholderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 80, Short.MAX_VALUE)
         );
-        nextShapePanelLayout.setVerticalGroup(
-            nextShapePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        miniPanelPlaceholderLayout.setVerticalGroup(
+            miniPanelPlaceholderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 80, Short.MAX_VALUE)
         );
 
@@ -143,7 +144,7 @@ public final class GameForm extends JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nextShapePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(miniPanelPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -163,7 +164,7 @@ public final class GameForm extends JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(levelDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nextShapePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(miniPanelPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(gameAreaPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -212,7 +213,7 @@ public final class GameForm extends JFrame {
     private javax.swing.JPanel gameAreaPlaceholder;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel levelDisplay;
-    private javax.swing.JPanel nextShapePanel;
+    private javax.swing.JPanel miniPanelPlaceholder;
     private javax.swing.JLabel scoreDisplay;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,7 @@
-package com.joyful.tetris.view;
+package com.joyful.tetris.view.panel;
 
 import com.joyful.tetris.model.TetrisBlock;
-import com.joyful.tetris.view.GameArea;
+import com.joyful.tetris.view.panel.GameArea;
 import static java.awt.Color.BLACK;
 import java.awt.Graphics;
 import javax.swing.JPanel;

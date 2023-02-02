@@ -1,4 +1,4 @@
-package com.joyful.tetris.view;
+package com.joyful.tetris.view.panel;
 
 import com.joyful.tetris.Launcher;
 import com.joyful.tetris.model.TetrisBlock;
@@ -303,7 +303,7 @@ public class GameArea extends JPanel {
         this.miniPanel = miniPanel;
     }
 
-    void initBackground() {
+    public void initBackground() {
         background = new Color[gridRows][gridColumns];
     }
     
