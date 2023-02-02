@@ -1,11 +1,14 @@
 package com.joyful.tetris.view;
 
 import com.joyful.tetris.Launcher;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -24,6 +27,8 @@ public class LeaderboardForm extends javax.swing.JFrame {
     
     public LeaderboardForm() {
         initComponents();
+        model = (DefaultTableModel) leaderboard.getModel();
+
         initTableData();
         initTableSorter();
     }   
@@ -32,17 +37,21 @@ public class LeaderboardForm extends javax.swing.JFrame {
         model.addRow(new Object[]{playerName, score});
         sorter.sort();
 
-        saveLeaderboard();
+        try {
+            saveLeaderboard();
+        } catch (IOException ex) {
+            Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         setVisible(true);
     }
 
-    private void saveLeaderboard() {
-        try (FileOutputStream fos = new FileOutputStream(leaderboardFilename); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+    private void saveLeaderboard() throws IOException {
+        File file = new File(leaderboardFilename);
+        file.createNewFile();
+        try (FileOutputStream fos = new FileOutputStream(file, false); 
+                ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(model.getDataVector());
-
-        } catch (IOException ex) {
-            Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -163,17 +172,17 @@ public class LeaderboardForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initTableData() {
-        Vector columnIdentifiers = new Vector();
-        columnIdentifiers.add("Player");
-        columnIdentifiers.add("Score");
+        if (Files.exists(Path.of(leaderboardFilename))) {
+            Vector columnIdentifiers = new Vector();
+            columnIdentifiers.add("Player");
+            columnIdentifiers.add("Score");
 
-        model = (DefaultTableModel) leaderboard.getModel();
+            try (FileInputStream fis = new FileInputStream(leaderboardFilename); ObjectInputStream ois = new ObjectInputStream(fis)) {
+                model.setDataVector((Vector<? extends Vector>) ois.readObject(), columnIdentifiers);
 
-        try (FileInputStream fis = new FileInputStream(leaderboardFilename); ObjectInputStream ois = new ObjectInputStream(fis)) {
-            model.setDataVector((Vector<? extends Vector>) ois.readObject(), columnIdentifiers);
-
-        } catch (Exception ex) {
-            Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
