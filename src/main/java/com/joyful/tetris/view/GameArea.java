@@ -1,19 +1,11 @@
 package com.joyful.tetris.view;
 
-import com.joyful.tetris.model.block.ZShape;
-import com.joyful.tetris.model.block.TShape;
-import com.joyful.tetris.model.block.SShape;
-import com.joyful.tetris.model.block.OShape;
-import com.joyful.tetris.model.block.LShape;
-import com.joyful.tetris.model.block.JShape;
-import com.joyful.tetris.model.block.IShape;
 import com.joyful.tetris.Launcher;
 import com.joyful.tetris.model.TetrisBlock;
+import com.joyful.tetris.util.BlockHelper;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import java.awt.Graphics;
-import java.util.Arrays;
-import java.util.Random;
 import javax.swing.JPanel;
 
 public class GameArea extends JPanel { 
@@ -24,12 +16,10 @@ public class GameArea extends JPanel {
     private final int gridColumns;
     private Color[][] background;
     
+    private TetrisBlock currentBlock;
     private TetrisBlock nextBlock;
-    private TetrisBlock block;
-    private TetrisBlock[] blocks;
     
     public GameArea(JPanel placeholder) {
-//        placeholder.setVisible(false);
         setBounds(placeholder.getBounds());
         setBackground(placeholder.getBackground());
         setBorder(placeholder.getBorder());
@@ -37,16 +27,6 @@ public class GameArea extends JPanel {
         gridColumns = 10;
         cellSize = getBounds().width / gridColumns;
         gridRows = getBounds().height / cellSize;
-        
-        blocks = new TetrisBlock[]{
-            new IShape(),
-            new JShape(),
-            new LShape(),
-            new OShape(),
-            new SShape(),
-            new TShape(),
-            new ZShape()
-        };
     }
     
     @Override
@@ -99,7 +79,7 @@ public class GameArea extends JPanel {
     }
     
     public boolean isBlockOutOfBounds() {
-        if (block.getY() < 0) {
+        if (currentBlock.getY() < 0) {
 //            block = null;
             return true;
         }
@@ -111,115 +91,111 @@ public class GameArea extends JPanel {
     }
     
     public void moveBlockToBackground() {
-        for (int i = 0; i < block.getHeight(); i++) {
-            for (int j = 0; j < block.getWidth(); j++) {
-                if (block.getShape()[i][j] == 1) {
-                    background[i + block.getY()][j + block.getX()] = block.getColor();
+        for (int i = 0; i < currentBlock.getHeight(); i++) {
+            for (int j = 0; j < currentBlock.getWidth(); j++) {
+                if (currentBlock.getShape()[i][j] == 1) {
+                    background[i + currentBlock.getY()][j + currentBlock.getX()] = currentBlock.getColor();
                 }
             }
         }
     }
     
     public void moveBlockRight() {
-        if (block == null) {
+        if (currentBlock == null) {
             return;
         }
         if (checkRight()) {
-            block.moveRight();
+            currentBlock.moveRight();
             repaint();
         }
     }
 
     public void moveBlockLeft() {
-        if (block == null) {
+        if (currentBlock == null) {
             return;
         }
         if (checkLeft()) {
-            block.moveLeft();
+            currentBlock.moveLeft();
             repaint();
         }
     }
 
     public void dropBlock() {
-        if (block == null) {
+        if (currentBlock == null) {
             return;
         }
         while(checkBottom()) {
-            block.moveDown();
+            currentBlock.moveDown();
             repaint();
         }
     }
 
     public void rotateBlock() {
-        if (block == null) {
+        if (currentBlock == null) {
             return;
         }
-        block.rotate();
+        currentBlock.rotate();
         
         // prevent sides or bottom rotation
-        if (block.getLeftEdge() < 0) {
-            block.saveShift(0);
-            block.setX(0);
+        if (currentBlock.getLeftEdge() < 0) {
+            currentBlock.saveShift(0);
+            currentBlock.setX(0);
         }
-        if (block.getBottomCoord() >= gridRows) {
-            block.setY(gridRows - block.getHeight());
+        if (currentBlock.getBottomCoord() >= gridRows) {
+            currentBlock.setY(gridRows - currentBlock.getHeight());
         }
-        if (block.getRightEdge() >= gridColumns) {
-            int newX = gridColumns - block.getWidth();
-            block.saveShift(newX);
-            block.setX(newX);
+        if (currentBlock.getRightEdge() >= gridColumns) {
+            int newX = gridColumns - currentBlock.getWidth();
+            currentBlock.saveShift(newX);
+            currentBlock.setX(newX);
         }
         
         // prevent background rotation
-        for (int row = 0; row < block.getHeight(); row++) {
-            for (int col = 0; col < block.getWidth(); col++) {
-                int gridRow = (block.getY() + row);
-                int gridColumn = (block.getX() + col);
+        for (int row = 0; row < currentBlock.getHeight(); row++) {
+            for (int col = 0; col < currentBlock.getWidth(); col++) {
+                int gridRow = (currentBlock.getY() + row);
+                int gridColumn = (currentBlock.getX() + col);
                 
                 // break if under screen
                 if (gridRow < 0) {
                     break;
                 }
-                if (block.getShape()[row][col] != 0 
+                if (currentBlock.getShape()[row][col] != 0 
                         && background[gridRow][gridColumn] != null) {
-                        block.unrotate();
-                        block.unshift();
+                        currentBlock.unrotate();
+                        currentBlock.unshift();
                         return;
                 }
             }
         }
-
         repaint();
     }
 
     private void drawBlock(Graphics g) {
-        int[][] shape = block.getShape();
+        int[][] shape = currentBlock.getShape();
         
-        for (int row = 0; row < block.getHeight(); row++) {
-            for (int col = 0; col < block.getWidth(); col++) {
+        for (int row = 0; row < currentBlock.getHeight(); row++) {
+            for (int col = 0; col < currentBlock.getWidth(); col++) {
                 if (shape[row][col] == 1) {
-                    int x = (block.getX() + col) * cellSize;
-                    int y = (block.getY() + row) * cellSize;
+                    int x = (currentBlock.getX() + col) * cellSize;
+                    int y = (currentBlock.getY() + row) * cellSize;
 
-                    drawGridSquare(g, block.getColor(), x, y);
+                    drawGridSquare(g, currentBlock.getColor(), x, y);
                 }
             }            
         }
     }
 
     public void spawnBlock() {
-        Random random = new Random();
         Color previousColor = null;
-        if (block == null) {
-            block = blocks[random.nextInt(blocks.length)];
-            block.spawn(gridColumns, previousColor);
+        if (currentBlock == null) {
+            currentBlock = BlockHelper.getNewBlock(currentBlock);
+            currentBlock.spawn(gridColumns, previousColor);
         } else {
-            block = nextBlock;
+            currentBlock = nextBlock;
         }        
-        do {
-            nextBlock = blocks[random.nextInt(blocks.length)];
-        } while (Arrays.deepEquals(nextBlock.getShape(), block.getShape()));
-        nextBlock.spawn(gridColumns, block.getColor());
+        nextBlock = BlockHelper.getNewBlock(currentBlock);
+        nextBlock.spawn(gridColumns, currentBlock.getColor());
         
         miniPanel.repaint();
     }
@@ -228,24 +204,24 @@ public class GameArea extends JPanel {
         if (!checkBottom()) {
             return false;
         } else {
-            block.moveDown();
+            currentBlock.moveDown();
             repaint();
             return true;
         }
     }
 
     private boolean checkBottom() {
-        if (block.getBottomCoord() == gridRows) {
+        if (currentBlock.getBottomCoord() == gridRows) {
             return false;
         } 
-        int[][] shape = block.getShape();
-        int width = block.getWidth();
-        int height = block.getHeight();
+        int[][] shape = currentBlock.getShape();
+        int width = currentBlock.getWidth();
+        int height = currentBlock.getHeight();
         for (int col = 0; col < width; col++) {
             for (int row = height - 1; row >= 0; row--) {
                 if (shape[row][col] != 0) {
-                    int x = col + block.getX();
-                    int y = row + block.getY() + 1;
+                    int x = col + currentBlock.getX();
+                    int y = row + currentBlock.getY() + 1;
                     if (y < 0) break;
                     if (background[y][x] != null) return false;
                     break;
@@ -256,17 +232,17 @@ public class GameArea extends JPanel {
     }
     
     private boolean checkLeft() {
-        if (block.getLeftEdge() == 0) {
+        if (currentBlock.getLeftEdge() == 0) {
             return false;
         } 
-        int[][] shape = block.getShape();
-        int width = block.getWidth();
-        int height = block.getHeight();
+        int[][] shape = currentBlock.getShape();
+        int width = currentBlock.getWidth();
+        int height = currentBlock.getHeight();
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 if (shape[row][col] != 0) {
-                    int x = col + block.getX() - 1;
-                    int y = row + block.getY();
+                    int x = col + currentBlock.getX() - 1;
+                    int y = row + currentBlock.getY();
                     if (y < 0) {
                         break;
                     }
@@ -281,17 +257,17 @@ public class GameArea extends JPanel {
     }
 
     private boolean checkRight() {
-        if (block.getRightEdge() == gridColumns) {
+        if (currentBlock.getRightEdge() == gridColumns) {
             return false;
         }
-        int[][] shape = block.getShape();
-        int width = block.getWidth();
-        int height = block.getHeight();
+        int[][] shape = currentBlock.getShape();
+        int width = currentBlock.getWidth();
+        int height = currentBlock.getHeight();
         for (int row = 0; row < height; row++) {
             for (int col = width - 1; col >= 0; col--) {
                 if (shape[row][col] != 0) {
-                    int x = col + block.getX() + 1;
-                    int y = row + block.getY();
+                    int x = col + currentBlock.getX() + 1;
+                    int y = row + currentBlock.getY();
                     if (y < 0) {
                         break;
                     }

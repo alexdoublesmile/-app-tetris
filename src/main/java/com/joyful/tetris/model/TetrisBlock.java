@@ -2,50 +2,51 @@ package com.joyful.tetris.model;
 
 import com.joyful.tetris.util.ColorHelper;
 import java.awt.Color;
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TetrisBlock {
     private int x;
     private int y;
-    private int[][] shape;
-    private int[][][] allShapes;
+    private int[][] currentShape;
     private int currentRotation;
+    private int[][][] shapeRotations;
     private Color color;
     private int shift;
 
     public TetrisBlock(int[][] shape) {
-        this.shape = shape;
+        this.currentShape = shape;
         
         initShapes();
     }
     
     private void initShapes() {
-        allShapes = new int[4][][];
-        for (int i = 0; i < allShapes.length; i++) {
-            int rows = shape[0].length;
-            int cols = shape.length;
-            allShapes[i] = new int[rows][cols];
+        shapeRotations = new int[4][][];
+        for (int i = 0; i < shapeRotations.length; i++) {
+            int rows = currentShape[0].length;
+            int cols = currentShape.length;
+            shapeRotations[i] = new int[rows][cols];
             for (int y = 0; y < rows; y++) {
                 for (int x = 0; x < cols; x++) {
-                    allShapes[i][y][x] = shape[cols - x - 1][y];
+                    shapeRotations[i][y][x] = currentShape[cols - x - 1][y];
                 }
             }
-            shape = allShapes[i];
+            currentShape = shapeRotations[i];
         }
     }
     
     public void spawn(int gridWidth, Color previousColor) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        currentRotation = random.nextInt(allShapes.length);
-        shape = allShapes[currentRotation];
+        currentRotation = random.nextInt(shapeRotations.length);
+        currentShape = shapeRotations[currentRotation];
         
-        y = -getHeight() + 1;
+        y = -getHeight();
         x = random.nextInt(gridWidth - getWidth());
         color = ColorHelper.getNewColor(previousColor);
     }
 
     public int[][] getShape() {
-        return shape;
+        return currentShape;
     }
 
     public Color getColor() {
@@ -61,11 +62,11 @@ public class TetrisBlock {
     }
     
     public int getHeight() {
-        return shape.length;
+        return currentShape.length;
     }
 
     public int getWidth() {
-        return shape[0].length;
+        return currentShape[0].length;
     }
     
     public void moveDown() {
@@ -82,7 +83,7 @@ public class TetrisBlock {
     
     public void rotate() {
         currentRotation = currentRotation == 3 ? 0 : ++currentRotation;
-        shape = allShapes[currentRotation];
+        currentShape = shapeRotations[currentRotation];
     }
     
     public int getBottomCoord() {
@@ -121,10 +122,32 @@ public class TetrisBlock {
     }
 
     public int[][][] getShapes() {
-        return allShapes;
+        return shapeRotations;
     }
 
     public int getCurrentRotation() {
         return currentRotation;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Arrays.deepHashCode(this.currentShape);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TetrisBlock other = (TetrisBlock) obj;
+        return Arrays.deepEquals(this.currentShape, other.currentShape);
     }
 }
