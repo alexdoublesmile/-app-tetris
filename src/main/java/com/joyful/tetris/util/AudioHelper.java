@@ -1,5 +1,6 @@
 package com.joyful.tetris.util;
 
+import com.joyful.tetris.Launcher;
 import static com.joyful.tetris.audio.AudioConstants.SOUND_DIR_PATH;
 import com.joyful.tetris.audio.AudioPlayer;
 import java.io.File;
@@ -28,5 +29,17 @@ public final class AudioHelper {
             Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
         return clip;
+    }
+
+    public static void playSound(int clearedLines) {
+        switch (clearedLines) {
+            case 1:
+            case 2:
+            case 3:
+                Launcher.playClearLine();
+            case 4:
+                Launcher.playClearFourLines();
+            default:
+        }
     }
 }

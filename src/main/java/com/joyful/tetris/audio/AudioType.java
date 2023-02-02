@@ -9,7 +9,8 @@ import javax.sound.sampled.Clip;
 
 public enum AudioType {
     GAME_OVER("gameOver.wav"),
-    CLEAR_LINE("clearLine.wav");
+    CLEAR_LINE("clearLine.wav"),
+    CLEAR_FOUR_LINES("clearFourLines.wav");
 
     public static Map<AudioType, Clip> mapAllTypesToClip() {
         return Arrays.stream(values()).collect(toMap(

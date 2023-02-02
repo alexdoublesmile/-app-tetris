@@ -7,6 +7,7 @@ import com.joyful.tetris.view.GameForm;
 import com.joyful.tetris.view.LeaderboardForm;
 import com.joyful.tetris.view.StartupForm;
 import javax.swing.JOptionPane;
+import static com.joyful.tetris.audio.AudioType.CLEAR_FOUR_LINES;
 
 public class Launcher {
     private static GameForm gameForm;
@@ -52,5 +53,9 @@ public class Launcher {
 
     public static void playGameOver() {
         audioPlayer.play(GAME_OVER);
+    }
+
+    public static void playClearFourLines() {
+        audioPlayer.play(CLEAR_FOUR_LINES);
     }
 }

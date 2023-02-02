@@ -1,6 +1,7 @@
 package com.joyful.tetris.service;
 
 import com.joyful.tetris.Launcher;
+import com.joyful.tetris.util.AudioHelper;
 import com.joyful.tetris.util.ScoreHelper;
 import com.joyful.tetris.view.GameForm;
 import com.joyful.tetris.view.panel.GameArea;
@@ -40,8 +41,9 @@ public class GameThread extends Thread {
                 break;
             }
             gameArea.moveBlockToBackground();
-            int clearLines = gameArea.clearLines();
-            score += ScoreHelper.getScore(clearLines);
+            int clearedLines = gameArea.clearLines();
+            AudioHelper.playSound(clearedLines);
+            score += ScoreHelper.getScore(clearedLines);
             gameForm.updateScore(score);
             
             int lvl = score / scorePerLevel + 1;
