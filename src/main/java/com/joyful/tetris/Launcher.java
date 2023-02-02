@@ -1,9 +1,11 @@
 package com.joyful.tetris;
 
 import com.joyful.tetris.audio.AudioPlayer;
-import com.joyful.tetris.view.StartupForm;
-import com.joyful.tetris.view.LeaderboardForm;
+import static com.joyful.tetris.audio.AudioType.CLEAR_LINE;
+import static com.joyful.tetris.audio.AudioType.GAME_OVER;
 import com.joyful.tetris.view.GameForm;
+import com.joyful.tetris.view.LeaderboardForm;
+import com.joyful.tetris.view.StartupForm;
 import javax.swing.JOptionPane;
 
 public class Launcher {
@@ -40,15 +42,15 @@ public class Launcher {
         playGameOver();
         
         String playerName = JOptionPane.showInputDialog( "Game Over!\nPlease enter your name.");
-        gameForm.setVisible(false);
         leaderboardForm.addPlayer(playerName, score);
+        gameForm.setVisible(false);
     }
 
     public static void playClearLine() {
-        audioPlayer.clearLine();
+        audioPlayer.play(CLEAR_LINE);
     }
 
     public static void playGameOver() {
-        audioPlayer.gameOver();
+        audioPlayer.play(GAME_OVER);
     }
 }
