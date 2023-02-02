@@ -11,8 +11,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class AudioPlayer {
     private static final String SOUND_DIR_PATH = "sound";
-    private static final String GAME_OVER_SOUND_FILE = SOUND_DIR_PATH + File.separator + "success.wav";
-    private static final String CLEAR_LINE_SOUND_PATH = SOUND_DIR_PATH + File.separator + "clear.wav";
+    private static final String GAME_OVER_SOUND_FILE = SOUND_DIR_PATH + File.separator + "gameOver.wav";
+    private static final String CLEAR_LINE_SOUND_PATH = SOUND_DIR_PATH + File.separator + "clearLine.wav";
 
     private Clip gameOverClip;
     private Clip clearLineClip;

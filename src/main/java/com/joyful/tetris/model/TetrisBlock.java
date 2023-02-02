@@ -1,19 +1,16 @@
 package com.joyful.tetris.model;
 
+import com.joyful.tetris.util.ColorHelper;
 import java.awt.Color;
-import static java.awt.Color.BLUE;
-import static java.awt.Color.GREEN;
-import static java.awt.Color.RED;
 import java.util.Random;
 
 public class TetrisBlock {
     private int x;
     private int y;
     private int[][] shape;
-    private int[][][] shapes;
+    private int[][][] allShapes;
     private int currentRotation;
     private Color color;
-    private Color[] availableColors = {GREEN, RED, BLUE};
     private int shift;
 
     public TetrisBlock(int[][] shape) {
@@ -23,30 +20,28 @@ public class TetrisBlock {
     }
     
     private void initShapes() {
-        shapes = new int[4][][];
-        for (int i = 0; i < shapes.length; i++) {
+        allShapes = new int[4][][];
+        for (int i = 0; i < allShapes.length; i++) {
             int rows = shape[0].length;
             int cols = shape.length;
-            shapes[i] = new int[rows][cols];
+            allShapes[i] = new int[rows][cols];
             for (int y = 0; y < rows; y++) {
                 for (int x = 0; x < cols; x++) {
-                    shapes[i][y][x] = shape[cols - x - 1][y];
+                    allShapes[i][y][x] = shape[cols - x - 1][y];
                 }
             }
-            shape = shapes[i];
+            shape = allShapes[i];
         }
     }
     
     public void spawn(int gridWidth, Color previousColor) {
         Random random = new Random();
-        currentRotation = random.nextInt(shapes.length);
-        shape = shapes[currentRotation];
+        currentRotation = random.nextInt(allShapes.length);
+        shape = allShapes[currentRotation];
         
         y = -getHeight();
         x = random.nextInt(gridWidth - getWidth());
-        do {
-            color = availableColors[random.nextInt(availableColors.length)];
-        } while (color.equals(previousColor));
+        color = ColorHelper.getNextColor(previousColor);
     }
 
     public int[][] getShape() {
@@ -87,7 +82,7 @@ public class TetrisBlock {
     
     public void rotate() {
         currentRotation = currentRotation == 3 ? 0 : ++currentRotation;
-        shape = shapes[currentRotation];
+        shape = allShapes[currentRotation];
     }
     
     public int getBottomCoord() {
@@ -126,7 +121,7 @@ public class TetrisBlock {
     }
 
     public int[][][] getShapes() {
-        return shapes;
+        return allShapes;
     }
 
     public int getCurrentRotation() {
