@@ -2,7 +2,7 @@ package com.joyful.tetris.model;
 
 import com.joyful.tetris.util.ColorHelper;
 import java.awt.Color;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class TetrisBlock {
     private int x;
@@ -35,7 +35,7 @@ public class TetrisBlock {
     }
     
     public void spawn(int gridWidth, Color previousColor) {
-        Random random = new Random();
+        ThreadLocalRandom random = ThreadLocalRandom.current();
         currentRotation = random.nextInt(allShapes.length);
         shape = allShapes[currentRotation];
         
