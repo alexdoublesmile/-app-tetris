@@ -1,11 +1,14 @@
 package com.joyful.tetris.view;
 
 import com.joyful.tetris.Launcher;
+import javax.swing.ImageIcon;
 
 public class StartupForm extends javax.swing.JFrame {
 
-    public StartupForm() {
+    public StartupForm(String title) {
+        super(title);
         initComponents();
+        setIconImage(new ImageIcon("icon.png").getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -108,7 +111,7 @@ public class StartupForm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new StartupForm().setVisible(true);
+            new StartupForm("Tetris Pro").setVisible(true);
         });
     }
 

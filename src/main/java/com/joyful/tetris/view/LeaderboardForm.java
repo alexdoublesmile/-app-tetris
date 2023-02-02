@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
@@ -25,8 +26,10 @@ public class LeaderboardForm extends javax.swing.JFrame {
     private DefaultTableModel model;
     private TableRowSorter<DefaultTableModel> sorter;
     
-    public LeaderboardForm() {
+    public LeaderboardForm(String title) {
+        super(title);
         initComponents();
+        setIconImage(new ImageIcon("icon.png").getImage());
         model = (DefaultTableModel) leaderboard.getModel();
 
         initTableData();
@@ -161,7 +164,7 @@ public class LeaderboardForm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new LeaderboardForm().setVisible(true);
+            new LeaderboardForm("Tetris Leaderboard").setVisible(true);
         });
     }
 

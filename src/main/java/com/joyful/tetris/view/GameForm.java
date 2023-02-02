@@ -7,6 +7,7 @@ import com.joyful.tetris.view.panel.MiniPanel;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
@@ -16,8 +17,10 @@ public final class GameForm extends JFrame {
     private final MiniPanel miniPanel;
     private GameThread gameThread;
     
-    public GameForm() {
+    public GameForm(String title) {
+        super(title);
         initComponents();
+        setIconImage(new ImageIcon("icon.png").getImage());
         
         gameArea = new GameArea(gameAreaPlaceholder);
         miniPanel = new MiniPanel(gameArea, miniPanelPlaceholder);
@@ -90,7 +93,6 @@ public final class GameForm extends JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tetris");
         setResizable(false);
 
         gameAreaPlaceholder.setBackground(new java.awt.Color(238, 238, 238));
@@ -207,7 +209,7 @@ public final class GameForm extends JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new GameForm().setVisible(true);
+            new GameForm("Tetris Pro").setVisible(true);
         });
     }
 
