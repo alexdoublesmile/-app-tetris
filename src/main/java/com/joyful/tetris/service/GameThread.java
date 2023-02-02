@@ -5,7 +5,6 @@ import com.joyful.tetris.view.GameArea;
 import com.joyful.tetris.view.GameForm;
 
 public class GameThread extends Thread {
-
     private GameForm gameForm;
     private GameArea gameArea;
     private int score;
@@ -26,14 +25,15 @@ public class GameThread extends Thread {
     public void run() {
         while(true) {   
             gameArea.spawnBlock();
+            
             while(gameArea.moveBlockDown()) {   
                 try {
                     Thread.sleep(pause);
                 } catch (InterruptedException ex) {
                     return;
-//                    Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
             if (gameArea.isBlockOutOfBounds()) {
                 Launcher.gameOver(score);
                 break;
@@ -50,5 +50,4 @@ public class GameThread extends Thread {
             }
         }
     }
-    
 }
