@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class MiniPanel extends JPanel {
-    private final int miniPanelCellSize = 20;
+    private final int miniPanelCellSize = 15;
     private final int miniPanelRows = 4;
     private final int miniPanelColumns = 4;
     
