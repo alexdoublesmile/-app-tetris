@@ -37,6 +37,7 @@ public final class AudioHelper {
             case 2:
             case 3:
                 Launcher.playClearLine();
+                break;
             case 4:
                 Launcher.playClearFourLines();
             default:
