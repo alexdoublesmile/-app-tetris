@@ -11,7 +11,6 @@ import static com.joyful.tetris.audio.AudioType.MASTER;
 import static com.joyful.tetris.audio.AudioType.PAUSE;
 import static com.joyful.tetris.audio.AudioType.SELECT;
 import static com.joyful.tetris.audio.AudioType.SENIOR;
-import static com.joyful.tetris.audio.AudioType.SILENT_DROP;
 import static com.joyful.tetris.audio.AudioType.START_GAME;
 import static com.joyful.tetris.audio.AudioType.START_MENU;
 import com.joyful.tetris.view.GameForm;
@@ -78,10 +77,6 @@ public class Launcher {
 
     public static void playStartGame() {
         audioPlayer.singlePlay(START_GAME);
-    }
-
-    public static void playSilentDrop() {
-        audioPlayer.singlePlay(SILENT_DROP);
     }
 
     public static void playFastDrop() {

@@ -15,7 +15,7 @@ public class GameArea extends JPanel {
     private final int cellSize;
     private final int gridRows;
     
-    private JPanel miniPanel;
+    private MiniPanel miniPanel;
     private Color[][] background;
     
     private TetrisBlock currentBlock;
@@ -59,10 +59,6 @@ public class GameArea extends JPanel {
                 
                 row++;
                 repaint();
-                
-                if (linesCleared > 0) {
-                    Launcher.playClearLine();
-                }
             }
         }
         return linesCleared;
@@ -190,21 +186,23 @@ public class GameArea extends JPanel {
         nextBlock = BlockHelper.getNewBlock(currentBlock);
         nextBlock.spawn(gridColumns, previousColor);
 
+        miniPanel.setNextBlock(nextBlock);
         miniPanel.repaint();
     }
 
     private void drawBlock(Graphics g) {
-        int[][] shape = currentBlock.getShape();
-        
-        for (int row = 0; row < currentBlock.getHeight(); row++) {
-            for (int col = 0; col < currentBlock.getWidth(); col++) {
-                if (shape[row][col] == 1) {
-                    int x = (currentBlock.getX() + col) * cellSize;
-                    int y = (currentBlock.getY() + row) * cellSize;
+        if (nonNull(currentBlock)) {
+            int[][] shape = currentBlock.getShape();
+            for (int row = 0; row < currentBlock.getHeight(); row++) {
+                for (int col = 0; col < currentBlock.getWidth(); col++) {
+                    if (shape[row][col] == 1) {
+                        int x = (currentBlock.getX() + col) * cellSize;
+                        int y = (currentBlock.getY() + row) * cellSize;
 
-                    drawGridSquare(g, currentBlock.getColor(), x, y);
-                }
-            }            
+                        drawGridSquare(g, currentBlock.getColor(), x, y);
+                    }
+                }            
+            }
         }
     }
     
@@ -307,7 +305,7 @@ public class GameArea extends JPanel {
         g.drawRect(x, y, cellSize, cellSize);
     }
 
-    public void setMiniPanel(JPanel miniPanel) {
+    public void setMiniPanel(MiniPanel miniPanel) {
         this.miniPanel = miniPanel;
     }
 

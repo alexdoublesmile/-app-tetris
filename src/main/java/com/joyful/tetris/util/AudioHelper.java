@@ -58,16 +58,16 @@ public final class AudioHelper {
 
     public static void playSoundByScore(int previousScore, int clearedLines) {
         int currentScore = previousScore + ScoreHelper.getScore(clearedLines);
-        if (previousScore < EXPERIENCED && currentScore > EXPERIENCED) {
+        if (previousScore < EXPERIENCED && currentScore >= EXPERIENCED) {
             Launcher.playExperienced();
         }
-        if (previousScore < EXPERT && currentScore > EXPERT) {
+        if (previousScore < EXPERT && currentScore >= EXPERT) {
             Launcher.playExpert();
         }
-        if (previousScore < MASTER && currentScore > MASTER) {
+        if (previousScore < MASTER && currentScore >= MASTER) {
             Launcher.playMaster();
         }
-        if (previousScore < SENIOR && currentScore > SENIOR) {
+        if (previousScore < SENIOR && currentScore >= SENIOR) {
             Launcher.playSenior();
         }
     }

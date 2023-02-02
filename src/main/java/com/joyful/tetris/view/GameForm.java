@@ -23,7 +23,7 @@ public final class GameForm extends JFrame {
         setIconImage(new ImageIcon("icon.png").getImage());
         
         gameArea = new GameArea(gameAreaPlaceholder);
-        miniPanel = new MiniPanel(gameArea, miniPanelPlaceholder);
+        miniPanel = new MiniPanel(miniPanelPlaceholder);
         gameArea.setMiniPanel(miniPanel);
         
         add(gameArea);
