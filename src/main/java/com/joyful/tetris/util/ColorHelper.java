@@ -6,17 +6,15 @@ import static java.awt.Color.GREEN;
 import static java.awt.Color.RED;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public final class ColorHelper {
     private static final List<Color> AVAILABLE_COLORS = Arrays.asList(GREEN, RED, BLUE);
-    private static final Random RANDOM = new Random();
 
-
-    public static Color getNextColor(Color previousColor) {
+    public static Color getNewColor(Color previousColor) {
         Color color;
         do {
-            color = AVAILABLE_COLORS.get(RANDOM.nextInt(AVAILABLE_COLORS.size()));
+            color = AVAILABLE_COLORS.get(ThreadLocalRandom.current().nextInt(AVAILABLE_COLORS.size()));
         } while (color.equals(previousColor));
         return color;
     }

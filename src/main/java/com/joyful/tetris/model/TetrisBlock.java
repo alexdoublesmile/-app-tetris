@@ -41,7 +41,7 @@ public class TetrisBlock {
         
         y = -getHeight();
         x = random.nextInt(gridWidth - getWidth());
-        color = ColorHelper.getNextColor(previousColor);
+        color = ColorHelper.getNewColor(previousColor);
     }
 
     public int[][] getShape() {
