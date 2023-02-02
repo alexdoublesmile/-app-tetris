@@ -1,13 +1,23 @@
 package com.joyful.tetris;
 
 import com.joyful.tetris.audio.AudioPlayer;
+import static com.joyful.tetris.audio.AudioType.CLEAR_FOUR_LINES;
 import static com.joyful.tetris.audio.AudioType.CLEAR_LINE;
+import static com.joyful.tetris.audio.AudioType.EXPERIENCED;
+import static com.joyful.tetris.audio.AudioType.EXPERT;
+import static com.joyful.tetris.audio.AudioType.FAST_DROP;
 import static com.joyful.tetris.audio.AudioType.GAME_OVER;
+import static com.joyful.tetris.audio.AudioType.MASTER;
+import static com.joyful.tetris.audio.AudioType.PAUSE;
+import static com.joyful.tetris.audio.AudioType.SELECT;
+import static com.joyful.tetris.audio.AudioType.SENIOR;
+import static com.joyful.tetris.audio.AudioType.SILENT_DROP;
+import static com.joyful.tetris.audio.AudioType.START_GAME;
+import static com.joyful.tetris.audio.AudioType.START_MENU;
 import com.joyful.tetris.view.GameForm;
 import com.joyful.tetris.view.LeaderboardForm;
 import com.joyful.tetris.view.StartupForm;
 import javax.swing.JOptionPane;
-import static com.joyful.tetris.audio.AudioType.CLEAR_FOUR_LINES;
 
 public class Launcher {
     private static GameForm gameForm;
@@ -16,6 +26,7 @@ public class Launcher {
     private static AudioPlayer audioPlayer;
     
     public static void start() {
+//        playStartGame();
         gameForm.setVisible(true);
         gameForm.startGame();
     }
@@ -36,6 +47,7 @@ public class Launcher {
             audioPlayer = new AudioPlayer();
             
             startupForm.setVisible(true);
+            playStartMenu();
         });
     }
 
@@ -53,6 +65,46 @@ public class Launcher {
 
     public static void playGameOver() {
         audioPlayer.play(GAME_OVER);
+    }
+
+    public static void playStartMenu() {
+        audioPlayer.play(START_MENU);
+    }
+
+    public static void playSelecet() {
+        audioPlayer.play(SELECT);
+    }
+
+    public static void playStartGame() {
+        audioPlayer.play(START_GAME);
+    }
+
+    public static void playSilentDrop() {
+        audioPlayer.play(SILENT_DROP);
+    }
+
+    public static void playFastDrop() {
+        audioPlayer.play(FAST_DROP);
+    }
+
+    public static void playExpert() {
+        audioPlayer.play(EXPERT);
+    }
+
+    public static void playExperienced() {
+        audioPlayer.play(EXPERIENCED);
+    }
+
+    public static void playMaster() {
+        audioPlayer.play(MASTER);
+    }
+
+    public static void playSenior() {
+        audioPlayer.play(SENIOR);
+    }
+
+    public static void playPause() {
+        audioPlayer.play(PAUSE);
     }
 
     public static void playClearFourLines() {

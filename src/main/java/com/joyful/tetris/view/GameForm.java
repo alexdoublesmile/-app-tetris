@@ -178,6 +178,7 @@ public final class GameForm extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Launcher.playSelecet();
         setVisible(false);
         Launcher.showStartup();
         gameThread.interrupt();

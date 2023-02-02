@@ -219,6 +219,7 @@ public class GameArea extends JPanel {
 
     private boolean checkBottom() {
         if (currentBlock.getBottomCoord() == gridRows) {
+            Launcher.playSilentDrop();
             return false;
         } 
         int[][] shape = currentBlock.getShape();

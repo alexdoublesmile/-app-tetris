@@ -33,14 +33,10 @@ public final class AudioHelper {
 
     public static void playSound(int clearedLines) {
         switch (clearedLines) {
-            case 1:
-            case 2:
-            case 3:
-                Launcher.playClearLine();
-                break;
-            case 4:
-                Launcher.playClearFourLines();
-            default:
+            case 1 -> Launcher.playClearLine();
+            case 2 -> Launcher.playClearLine();
+            case 3 -> Launcher.playClearLine();
+            case 4 -> Launcher.playClearFourLines();
         }
     }
 }
