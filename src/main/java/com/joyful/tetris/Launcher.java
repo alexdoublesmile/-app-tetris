@@ -1,5 +1,9 @@
 package com.joyful.tetris;
 
+import com.joyful.tetris.util.AudioPlayer;
+import com.joyful.tetris.view.StartupForm;
+import com.joyful.tetris.view.LeaderboardForm;
+import com.joyful.tetris.view.GameForm;
 import javax.swing.JOptionPane;
 
 public class Launcher {

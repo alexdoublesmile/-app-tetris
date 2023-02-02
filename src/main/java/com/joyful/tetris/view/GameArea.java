@@ -1,6 +1,14 @@
-package com.joyful.tetris;
+package com.joyful.tetris.view;
 
-import com.joyful.tetris.block.*;
+import com.joyful.tetris.model.block.ZShape;
+import com.joyful.tetris.model.block.TShape;
+import com.joyful.tetris.model.block.SShape;
+import com.joyful.tetris.model.block.OShape;
+import com.joyful.tetris.model.block.LShape;
+import com.joyful.tetris.model.block.JShape;
+import com.joyful.tetris.model.block.IShape;
+import com.joyful.tetris.Launcher;
+import com.joyful.tetris.model.TetrisBlock;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import java.awt.Graphics;

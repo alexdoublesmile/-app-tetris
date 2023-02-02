@@ -1,4 +1,4 @@
-package com.joyful.tetris;
+package com.joyful.tetris.util;
 
 import java.io.File;
 import java.io.IOException;

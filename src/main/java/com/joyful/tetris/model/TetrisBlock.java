@@ -1,4 +1,4 @@
-package com.joyful.tetris;
+package com.joyful.tetris.model;
 
 import java.awt.Color;
 import static java.awt.Color.BLUE;

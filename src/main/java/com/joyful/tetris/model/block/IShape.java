@@ -1,6 +1,6 @@
-package com.joyful.tetris.block;
+package com.joyful.tetris.model.block;
 
-import com.joyful.tetris.TetrisBlock;
+import com.joyful.tetris.model.TetrisBlock;
 
 public class IShape extends TetrisBlock {
 

@@ -1,5 +1,7 @@
-package com.joyful.tetris;
+package com.joyful.tetris.view;
 
+import com.joyful.tetris.Launcher;
+import com.joyful.tetris.service.GameThread;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;

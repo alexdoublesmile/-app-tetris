@@ -1,4 +1,8 @@
-package com.joyful.tetris;
+package com.joyful.tetris.service;
+
+import com.joyful.tetris.Launcher;
+import com.joyful.tetris.view.GameArea;
+import com.joyful.tetris.view.GameForm;
 
 public class GameThread extends Thread {
 

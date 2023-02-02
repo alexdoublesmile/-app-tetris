@@ -1,5 +1,6 @@
-package com.joyful.tetris;
+package com.joyful.tetris.view;
 
+import com.joyful.tetris.Launcher;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -143,7 +144,7 @@ public class LeaderboardForm extends javax.swing.JFrame {
     private javax.swing.JTable leaderboard;
     // End of variables declaration//GEN-END:variables
 
-    void addPlayer(String playerName, int score) {
+    public void addPlayer(String playerName, int score) {
         model.addRow(new Object[] {playerName, score});
         sorter.sort();
         

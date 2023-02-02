@@ -1,4 +1,6 @@
-package com.joyful.tetris;
+package com.joyful.tetris.view;
+
+import com.joyful.tetris.Launcher;
 
 public class StartupForm extends javax.swing.JFrame {
 
