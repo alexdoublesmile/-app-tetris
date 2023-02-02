@@ -67,6 +67,10 @@ public class GameArea extends JPanel {
                 clearLine(0);
                 r++;
                 repaint();
+                
+                if (linesCleared > 0) {
+                    Launcher.playClearLine();
+                }
             }
         }
         return linesCleared;
