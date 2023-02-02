@@ -113,15 +113,17 @@ public final class GameForm extends JFrame {
         levelDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         levelDisplay.setText("Level: 1");
 
+        miniPanelPlaceholder.setPreferredSize(new java.awt.Dimension(82, 82));
+
         javax.swing.GroupLayout miniPanelPlaceholderLayout = new javax.swing.GroupLayout(miniPanelPlaceholder);
         miniPanelPlaceholder.setLayout(miniPanelPlaceholderLayout);
         miniPanelPlaceholderLayout.setHorizontalGroup(
             miniPanelPlaceholderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGap(0, 82, Short.MAX_VALUE)
         );
         miniPanelPlaceholderLayout.setVerticalGroup(
             miniPanelPlaceholderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGap(0, 82, Short.MAX_VALUE)
         );
 
         jButton1.setText("Main Menu");

@@ -5,7 +5,9 @@ import com.joyful.tetris.model.TetrisBlock;
 import com.joyful.tetris.util.BlockHelper;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
+import static java.awt.Color.WHITE;
 import java.awt.Graphics;
+import static java.util.Objects.nonNull;
 import javax.swing.JPanel;
 
 public class GameArea extends JPanel { 
@@ -174,15 +176,18 @@ public class GameArea extends JPanel {
     }
 
     public void spawnBlock() {
-        Color previousColor = null;
-        if (currentBlock == null) {
+        Color previousColor = nonNull(currentBlock) 
+                ? currentBlock.getColor() 
+                : WHITE;
+        
+        if (nextBlock == null) {
             currentBlock = BlockHelper.getNewBlock(currentBlock);
             currentBlock.spawn(gridColumns, previousColor);
         } else {
             currentBlock = nextBlock;
         }
         nextBlock = BlockHelper.getNewBlock(currentBlock);
-        nextBlock.spawn(gridColumns, currentBlock.getColor());
+        nextBlock.spawn(gridColumns, previousColor);
 
         miniPanel.repaint();
     }
@@ -308,4 +313,5 @@ public class GameArea extends JPanel {
     public void initBackground() {
         background = new Color[gridRows][gridColumns];
     }
+    
 }

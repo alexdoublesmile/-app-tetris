@@ -18,4 +18,8 @@ public final class ColorHelper {
         } while (color.equals(previousColor));
         return color;
     }
+
+    public static Color getNewColor() {
+        return AVAILABLE_COLORS.get(ThreadLocalRandom.current().nextInt(AVAILABLE_COLORS.size()));
+    }
 }
