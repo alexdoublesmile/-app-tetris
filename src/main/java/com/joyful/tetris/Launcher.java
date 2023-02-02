@@ -30,8 +30,12 @@ public class Launcher {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
             gameForm = new GameForm();
+            gameForm.setTitle("Tetris Pro");
             leaderboardForm = new LeaderboardForm();
+            leaderboardForm.setTitle("Tetris Leaderboard");
             startupForm = new StartupForm();
+            startupForm.setTitle("Tetris Pro");
+            
             audioPlayer = new AudioPlayer();
             
             startupForm.setVisible(true);
