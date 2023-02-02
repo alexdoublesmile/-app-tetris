@@ -13,7 +13,6 @@ import static com.joyful.tetris.audio.AudioType.SELECT;
 import static com.joyful.tetris.audio.AudioType.SENIOR;
 import static com.joyful.tetris.audio.AudioType.SILENT_DROP;
 import static com.joyful.tetris.audio.AudioType.START_GAME;
-import static com.joyful.tetris.audio.AudioType.START_MENU;
 import com.joyful.tetris.view.GameForm;
 import com.joyful.tetris.view.LeaderboardForm;
 import com.joyful.tetris.view.StartupForm;
@@ -60,54 +59,54 @@ public class Launcher {
     }
 
     public static void playClearLine() {
-        audioPlayer.play(CLEAR_LINE);
+        audioPlayer.singlePlay(CLEAR_LINE);
     }
 
     public static void playGameOver() {
-        audioPlayer.play(GAME_OVER);
+        audioPlayer.singlePlay(GAME_OVER);
     }
 
     public static void playStartMenu() {
-        audioPlayer.play(START_MENU);
+//        audioPlayer.loopPlay(START_MENU);
     }
 
     public static void playSelecet() {
-        audioPlayer.play(SELECT);
+        audioPlayer.loopPlay(SELECT);
     }
 
     public static void playStartGame() {
-        audioPlayer.play(START_GAME);
+        audioPlayer.singlePlay(START_GAME);
     }
 
     public static void playSilentDrop() {
-        audioPlayer.play(SILENT_DROP);
+        audioPlayer.singlePlay(SILENT_DROP);
     }
 
     public static void playFastDrop() {
-        audioPlayer.play(FAST_DROP);
+        audioPlayer.singlePlay(FAST_DROP);
     }
 
     public static void playExpert() {
-        audioPlayer.play(EXPERT);
+        audioPlayer.singlePlay(EXPERT);
     }
 
     public static void playExperienced() {
-        audioPlayer.play(EXPERIENCED);
+        audioPlayer.singlePlay(EXPERIENCED);
     }
 
     public static void playMaster() {
-        audioPlayer.play(MASTER);
+        audioPlayer.singlePlay(MASTER);
     }
 
     public static void playSenior() {
-        audioPlayer.play(SENIOR);
+        audioPlayer.singlePlay(SENIOR);
     }
 
     public static void playPause() {
-        audioPlayer.play(PAUSE);
+        audioPlayer.singlePlay(PAUSE);
     }
 
     public static void playClearFourLines() {
-        audioPlayer.play(CLEAR_FOUR_LINES);
+        audioPlayer.singlePlay(CLEAR_FOUR_LINES);
     }
 }

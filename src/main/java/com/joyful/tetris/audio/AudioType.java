@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Map;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.Clip;
 
 public enum AudioType {
@@ -26,6 +27,12 @@ public enum AudioType {
         return Arrays.stream(values()).collect(toMap(
                         identity(), 
                         type -> AudioHelper.getClip(type.getFileName())));
+    }
+
+    public static Map<AudioType, AudioInputStream> mapAllTypesToStream() {
+        return Arrays.stream(values()).collect(toMap(
+                identity(),
+                type -> AudioHelper.getStream(type.getFileName())));
     }
     
     private final String fileName;

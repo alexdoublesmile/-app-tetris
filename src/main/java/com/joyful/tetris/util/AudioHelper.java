@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -31,7 +32,20 @@ public final class AudioHelper {
         return clip;
     }
 
-    public static void playSound(int clearedLines) {
+    public static AudioInputStream getStream(String fileName) {
+        AudioInputStream stream = null;
+        try {
+            stream = AudioSystem.getAudioInputStream(new File(SOUND_DIR_PATH + File.separator + fileName).getAbsoluteFile());
+
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return stream;
+    }
+
+    public static void playSoundByLinesNumber(int clearedLines) {
         switch (clearedLines) {
             case 1 -> Launcher.playClearLine();
             case 2 -> Launcher.playClearLine();

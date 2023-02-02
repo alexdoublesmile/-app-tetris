@@ -42,7 +42,7 @@ public class GameThread extends Thread {
             }
             gameArea.moveBlockToBackground();
             int clearedLines = gameArea.clearLines();
-            AudioHelper.playSound(clearedLines);
+            AudioHelper.playSoundByLinesNumber(clearedLines);
             score += ScoreHelper.getScore(clearedLines);
             gameForm.updateScore(score);
             
