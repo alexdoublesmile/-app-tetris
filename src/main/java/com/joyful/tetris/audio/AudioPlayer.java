@@ -16,6 +16,9 @@ public class AudioPlayer {
     private static final Map<AudioType, Clip> clipMap = AudioType.mapAllTypesToClip();
     private static final Map<AudioType, AudioInputStream> streamMap = AudioType.mapAllTypesToStream();
     
+    private Line mainThemeLine;
+    private Clip mainThemeClip;
+    
     public void singlePlay(AudioType soundType) {
         Clip soundClip = clipMap.get(soundType);
         soundClip.setFramePosition(0);
@@ -26,21 +29,24 @@ public class AudioPlayer {
         AudioInputStream stream = streamMap.get(soundType);
         AudioFormat format = stream.getFormat();
         
-        Line line;
         try {
-            Clip clip = AudioSystem.getClip();
+            mainThemeClip = AudioSystem.getClip();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
-            line = AudioSystem.getLine(info);
+            Line line = AudioSystem.getLine(info);
             
             if (!line.isOpen()) {
-                clip.open(stream);
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-                clip.start();
+                mainThemeClip.open(stream);
+                mainThemeClip.loop(Clip.LOOP_CONTINUOUSLY);
+                mainThemeClip.start();
             }
         } catch (LineUnavailableException ex) {
             Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void stopMainTheme() {
+        mainThemeClip.close();
     }
 }

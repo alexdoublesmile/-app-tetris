@@ -12,7 +12,7 @@ public enum AudioType {
     START_MENU("start_menu.wav"),
     SELECT("select.wav"),
     START_GAME("start_game.wav"),
-    SILENT_DROP("silent_drop.wav"),
+//    SILENT_DROP("silent_drop.wav"),
     FAST_DROP("fast_drop.wav"),
     PAUSE("pause.wav"),
     CLEAR_LINE("clear_line.wav"),

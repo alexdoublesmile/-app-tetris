@@ -3,6 +3,10 @@ package com.joyful.tetris.util;
 import com.joyful.tetris.Launcher;
 import static com.joyful.tetris.audio.AudioConstants.SOUND_DIR_PATH;
 import com.joyful.tetris.audio.AudioPlayer;
+import static com.joyful.tetris.util.ScoreConstants.EXPERIENCED;
+import static com.joyful.tetris.util.ScoreConstants.EXPERT;
+import static com.joyful.tetris.util.ScoreConstants.MASTER;
+import static com.joyful.tetris.util.ScoreConstants.SENIOR;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -47,10 +51,24 @@ public final class AudioHelper {
 
     public static void playSoundByLinesNumber(int clearedLines) {
         switch (clearedLines) {
-            case 1 -> Launcher.playClearLine();
-            case 2 -> Launcher.playClearLine();
-            case 3 -> Launcher.playClearLine();
+            case 1, 2, 3 -> Launcher.playClearLine();
             case 4 -> Launcher.playClearFourLines();
+        }
+    }
+
+    public static void playSoundByScore(int previousScore, int clearedLines) {
+        int currentScore = previousScore + ScoreHelper.getScore(clearedLines);
+        if (previousScore < EXPERIENCED && currentScore > EXPERIENCED) {
+            Launcher.playExperienced();
+        }
+        if (previousScore < EXPERT && currentScore > EXPERT) {
+            Launcher.playExpert();
+        }
+        if (previousScore < MASTER && currentScore > MASTER) {
+            Launcher.playMaster();
+        }
+        if (previousScore < SENIOR && currentScore > SENIOR) {
+            Launcher.playSenior();
         }
     }
 }
