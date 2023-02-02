@@ -28,4 +28,20 @@ public final class BlockHelper {
         } while (newBlock.equals(currentBlock));
         return newBlock;
     }
+
+    public static int[][][] getShapeRotations(int[][] shape) {
+        int[][][] shapeRotations = new int[4][][];
+        for (int i = 0; i < shapeRotations.length; i++) {
+            int rows = shape[0].length;
+            int cols = shape.length;
+            shapeRotations[i] = new int[rows][cols];
+            for (int y = 0; y < rows; y++) {
+                for (int x = 0; x < cols; x++) {
+                    shapeRotations[i][y][x] = shape[cols - x - 1][y];
+                }
+            }
+            shape = shapeRotations[i];
+        }
+        return shapeRotations;
+    }
 }
