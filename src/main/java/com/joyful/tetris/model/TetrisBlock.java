@@ -22,7 +22,8 @@ public class TetrisBlock {
     
     public void spawn(int gridWidth, Color previousColor) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        shape = shapeRotations[random.nextInt(shapeRotations.length)];
+        rotation = random.nextInt(shapeRotations.length);
+        shape = shapeRotations[rotation];
         
         y = -getHeight();
         x = random.nextInt(gridWidth - getWidth());

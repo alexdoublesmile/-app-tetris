@@ -9,11 +9,11 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class GameArea extends JPanel { 
-    private JPanel miniPanel;
-    
+    private static final int gridColumns = 10;
     private final int cellSize;
     private final int gridRows;
-    private final int gridColumns;
+    
+    private JPanel miniPanel;
     private Color[][] background;
     
     private TetrisBlock currentBlock;
@@ -24,7 +24,6 @@ public class GameArea extends JPanel {
         setBackground(placeholder.getBackground());
         setBorder(placeholder.getBorder());
         
-        gridColumns = 10;
         cellSize = getBounds().width / gridColumns;
         gridRows = getBounds().height / cellSize;
     }
@@ -40,20 +39,23 @@ public class GameArea extends JPanel {
     public int clearLines() {
         boolean lineFilled;
         int linesCleared = 0;
-        for (int r = gridRows - 1; r >= 0; r--) {
+        for (int row = gridRows - 1; row >= 0; row--) {
             lineFilled = true;
-            for (int c = 0; c < gridColumns; c++) {
-                if (background[r][c] == null) {
+            for (int col = 0; col < gridColumns; col++) {
+                if (background[row][col] == null) {
                     lineFilled = false;
                     break;
                 }
             }
             if (lineFilled) {
+                clearLine(row);
                 linesCleared++;
-                clearLine(r);
-                shiftDown(r);
+                
+                shiftDown(row);
+                
                 clearLine(0);
-                r++;
+                
+                row++;
                 repaint();
                 
                 if (linesCleared > 0) {
@@ -80,7 +82,7 @@ public class GameArea extends JPanel {
     
     public boolean isBlockOutOfBounds() {
         if (currentBlock.getY() < 0) {
-//            block = null;
+            currentBlock = null;
             return true;
         }
         return false;
@@ -171,6 +173,20 @@ public class GameArea extends JPanel {
         repaint();
     }
 
+    public void spawnBlock() {
+        Color previousColor = null;
+        if (currentBlock == null) {
+            currentBlock = BlockHelper.getNewBlock(currentBlock);
+            currentBlock.spawn(gridColumns, previousColor);
+        } else {
+            currentBlock = nextBlock;
+        }
+        nextBlock = BlockHelper.getNewBlock(currentBlock);
+        nextBlock.spawn(gridColumns, currentBlock.getColor());
+
+        miniPanel.repaint();
+    }
+
     private void drawBlock(Graphics g) {
         int[][] shape = currentBlock.getShape();
         
@@ -184,20 +200,6 @@ public class GameArea extends JPanel {
                 }
             }            
         }
-    }
-
-    public void spawnBlock() {
-        Color previousColor = null;
-        if (currentBlock == null) {
-            currentBlock = BlockHelper.getNewBlock(currentBlock);
-            currentBlock.spawn(gridColumns, previousColor);
-        } else {
-            currentBlock = nextBlock;
-        }        
-        nextBlock = BlockHelper.getNewBlock(currentBlock);
-        nextBlock.spawn(gridColumns, currentBlock.getColor());
-        
-        miniPanel.repaint();
     }
     
     public boolean moveBlockDown() {
@@ -306,5 +308,4 @@ public class GameArea extends JPanel {
     public void initBackground() {
         background = new Color[gridRows][gridColumns];
     }
-    
 }
