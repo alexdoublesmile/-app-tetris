@@ -39,7 +39,7 @@ public class TetrisBlock {
         currentRotation = random.nextInt(allShapes.length);
         shape = allShapes[currentRotation];
         
-        y = -getHeight();
+        y = -getHeight() + 1;
         x = random.nextInt(gridWidth - getWidth());
         color = ColorHelper.getNewColor(previousColor);
     }
@@ -105,17 +105,17 @@ public class TetrisBlock {
         this.y = y;
     }
 
-    void unrotate() {
+    public void unrotate() {
         rotate();
         rotate();
         rotate();
     }
 
-    void saveShift(int newX) {
+    public void saveShift(int newX) {
         shift = x - newX;
     }
 
-    void unshift() {
+    public void unshift() {
         x += shift;
         shift = 0;
     }
