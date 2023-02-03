@@ -30,8 +30,12 @@ public class GameThread extends Thread {
         this.gameForm = gameForm;
         this.gameArea = gameArea;
         
-        gameForm.updateScore(score);
-        gameForm.updateLevel(level);
+        updateScore(score;
+        updateLevel(level);
+        updateRank(rank);
+        updateLines(lines);
+        updateSpeed(speed);
+        updateEfficiency(efficiency));
     }
 
     @Override
@@ -80,7 +84,6 @@ public class GameThread extends Thread {
             gameForm.updateEfficiency(efficiency);
             
             AudioHelper.playSoundByLinesNumber(clearedLines);
-//            AudioHelper.playSoundByScore(score, clearedLines);
             
             int lvl = score / scorePerLevel + 1;
             if (lvl > level) {
@@ -90,4 +93,29 @@ public class GameThread extends Thread {
             }
         }
     }
+
+    public PlayerRank getRank() {
+        return rank;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getLines() {
+        return lines;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getEfficiency() {
+        return efficiency;
+    }
+    
 }

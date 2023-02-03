@@ -34,6 +34,7 @@ public final class GameForm extends JFrame {
     }
     
     public void startGame() {
+        
         gameArea.initBackground();
         
         gameThread = new GameThread(gameArea, this);
@@ -228,8 +229,10 @@ public final class GameForm extends JFrame {
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
         Launcher.playSelect();
+        
         setVisible(false);
         Launcher.showStartup();
+        
         gameThread.interrupt();
     }//GEN-LAST:event_btnMainMenuActionPerformed
 

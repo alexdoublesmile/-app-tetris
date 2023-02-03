@@ -3,42 +3,42 @@ package com.joyful.tetris.model;
 import com.joyful.tetris.Launcher;
 
 public enum PlayerRank {
-    NOOB("Noob", 200) {
+    NOOB("Noob", 2000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playBeginner();
             return BEGINNER;
         }
     },
-    BEGINNER("Beginner", 500) {
+    BEGINNER("Beginner", 5000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playExperienced();
             return EXPERIENCED;
         }
     },
-    EXPERIENCED("Experienced", 1000) {
+    EXPERIENCED("Experienced", 10000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playExpert();
             return EXPERT;
         }
     },
-    EXPERT("Expert", 1500) {
+    EXPERT("Expert", 15000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playMaster();
             return MASTER;
         }
     },
-    MASTER("Master", 2000) {
+    MASTER("Master", 20000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playSenior();
             return SENIOR;
         }
     },
-    SENIOR("Senior", 2500) {
+    SENIOR("Senior", 25000) {
         @Override
         public PlayerRank getHigherRank() {
             return SENIOR;

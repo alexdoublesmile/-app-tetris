@@ -46,10 +46,6 @@ public final class AudioHelper {
     }
 
     public static void playSoundByLinesNumber(int clearedLines) {
-//        switch (clearedLines) {
-//            case 1, 2, 3 -> Launcher.playClearLine();
-//            case 4 -> Launcher.playClearFourLines();
-//        }
         switch (clearedLines) {
             case 1:
             case 2:
@@ -60,20 +56,4 @@ public final class AudioHelper {
                 Launcher.playClearFourLines();
         }
     }
-
-//    public static void playSoundByScore(int previousScore, int clearedLines) {
-//        int currentScore = previousScore + ScoreHelper.getScore(clearedLines);
-//        if (previousScore < NOOB.getNextRankScore() && currentScore >= NOOB.getNextRankScore()) {
-//            Launcher.playExperienced();
-//        }
-//        if (previousScore < EXPERIENCED.getNextRankScore() && currentScore >= EXPERIENCED.getNextRankScore()) {
-//            Launcher.playExpert();
-//        }
-//        if (previousScore < EXPERT.getNextRankScore() && currentScore >= EXPERT.getNextRankScore()) {
-//            Launcher.playMaster();
-//        }
-//        if (previousScore < MASTER.getNextRankScore() && currentScore >= MASTER.getNextRankScore()) {
-//            Launcher.playSenior();
-//        }
-//    }
 }
