@@ -1,6 +1,7 @@
 package com.joyful.tetris.view;
 
 import com.joyful.tetris.Launcher;
+import com.joyful.tetris.model.dto.PlayerInfo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -36,8 +37,8 @@ public class LeaderboardForm extends javax.swing.JFrame {
         initTableSorter();
     }   
     
-    public void addPlayer(String playerName, int score) {
-        model.addRow(new Object[]{playerName, score});
+    public void addPlayer(PlayerInfo info) {
+        model.addRow(new Object[]{playerName, score, lines, rank, level, speed, efficiency});
         sorter.sort();
 
         try {
