@@ -1,6 +1,7 @@
 package com.joyful.tetris.view;
 
 import com.joyful.tetris.Launcher;
+import com.joyful.tetris.model.PlayerRank;
 import com.joyful.tetris.service.GameThread;
 import com.joyful.tetris.view.panel.GameArea;
 import com.joyful.tetris.view.panel.MiniPanel;
@@ -37,14 +38,6 @@ public final class GameForm extends JFrame {
         
         gameThread = new GameThread(gameArea, this);
         gameThread.start();
-    }
-    
-    public void updateScore(int score) {
-        scoreDisplay.setText("Score: " + score);
-    }
-
-    public void updateLevel(int level) {
-        levelDisplay.setText("Level: " + level);
     }
 
     private void initControls() {
@@ -90,12 +83,12 @@ public final class GameForm extends JFrame {
         scoreDisplay = new javax.swing.JLabel();
         levelDisplay = new javax.swing.JLabel();
         miniPanelPlaceholder = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnMainMenu = new javax.swing.JButton();
         linesDisplay = new javax.swing.JLabel();
         speedDisplay = new javax.swing.JLabel();
         rankDisplay = new javax.swing.JLabel();
         efficiencyDisplay = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnPause = new javax.swing.JButton();
         btnSound = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,11 +127,11 @@ public final class GameForm extends JFrame {
             .addGap(0, 82, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Main Menu");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMainMenu.setText("Main Menu");
+        btnMainMenu.setFocusable(false);
+        btnMainMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMainMenuActionPerformed(evt);
             }
         });
 
@@ -154,11 +147,11 @@ public final class GameForm extends JFrame {
         efficiencyDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         efficiencyDisplay.setText("Efficiency: 0");
 
-        jButton2.setText("Pause");
-        jButton2.setFocusable(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnPause.setText("Pause");
+        btnPause.setFocusable(false);
+        btnPause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnPauseActionPerformed(evt);
             }
         });
 
@@ -177,8 +170,8 @@ public final class GameForm extends JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPause, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -219,9 +212,9 @@ public final class GameForm extends JFrame {
                             .addGap(8, 8, 8))
                         .addComponent(gameAreaPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnMainMenu)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnPause)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(speedDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -235,16 +228,16 @@ public final class GameForm extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
         Launcher.playSelect();
         setVisible(false);
         Launcher.showStartup();
         gameThread.interrupt();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnMainMenuActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnPauseActionPerformed
 
     private void btnSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSoundActionPerformed
         // TODO add your handling code here:
@@ -281,11 +274,11 @@ public final class GameForm extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMainMenu;
+    private javax.swing.JButton btnPause;
     private javax.swing.JToggleButton btnSound;
     private javax.swing.JLabel efficiencyDisplay;
     private javax.swing.JPanel gameAreaPlaceholder;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel levelDisplay;
     private javax.swing.JLabel linesDisplay;
     private javax.swing.JPanel miniPanelPlaceholder;
@@ -293,4 +286,28 @@ public final class GameForm extends JFrame {
     private javax.swing.JLabel scoreDisplay;
     private javax.swing.JLabel speedDisplay;
     // End of variables declaration//GEN-END:variables
+
+    public void updateScore(int score) {
+        scoreDisplay.setText("Score: " + score);
+    }
+
+    public void updateLevel(int level) {
+        levelDisplay.setText("Level: " + level);
+    }
+    
+    public void updateRank(PlayerRank rank) {
+        rankDisplay.setText(rank.getTitle());
+    }
+
+    public void updateLines(int lines) {
+        linesDisplay.setText("Lines: " + lines);
+    }
+
+    public void updateSpeed(double speed) {
+        speedDisplay.setText("Speed: " + speed);
+    }
+
+    public void updateEfficiency(double efficiency) {
+        efficiencyDisplay.setText("Efficiency: " + efficiency);
+    }
 }

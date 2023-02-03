@@ -1,7 +1,7 @@
-package com.joyful.tetris.model.dto;
+package com.joyful.tetris.model;
 
 public final class PlayerInfo {
-    private final String playerName;
+    private String playerName;
     private final int score;
     private final int lines;
     private final String rank;
@@ -23,7 +23,7 @@ public final class PlayerInfo {
         return new PlayerInfoBuilder();
     }
 
-    private static class PlayerInfoBuilder {
+    public static class PlayerInfoBuilder {
         private String playerName;
         private int score;
         private int lines;
@@ -99,5 +99,8 @@ public final class PlayerInfo {
     public double getEfficiency() {
         return efficiency;
     }
-    
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
 }

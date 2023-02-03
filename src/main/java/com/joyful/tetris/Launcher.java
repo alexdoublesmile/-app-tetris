@@ -13,6 +13,7 @@ import static com.joyful.tetris.audio.AudioType.SELECT;
 import static com.joyful.tetris.audio.AudioType.SENIOR;
 import static com.joyful.tetris.audio.AudioType.START_GAME;
 import static com.joyful.tetris.audio.AudioType.START_MENU;
+import com.joyful.tetris.model.PlayerInfo;
 import com.joyful.tetris.view.GameForm;
 import com.joyful.tetris.view.LeaderboardForm;
 import com.joyful.tetris.view.StartupForm;
@@ -51,11 +52,13 @@ public class Launcher {
         });
     }
 
-    public static void gameOver(int score) {
+    public static void gameOver(PlayerInfo info) {
         playGameOver();
         
         String playerName = JOptionPane.showInputDialog( "Game Over!\nPlease enter your name.");
-        leaderboardForm.addPlayer(playerName, score);
+        info.setPlayerName(playerName);
+        leaderboardForm.addPlayer(info);
+        
         gameForm.setVisible(false);
     }
 

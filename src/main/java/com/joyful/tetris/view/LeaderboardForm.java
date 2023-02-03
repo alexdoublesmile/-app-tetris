@@ -1,7 +1,6 @@
 package com.joyful.tetris.view;
 
 import com.joyful.tetris.Launcher;
-import com.joyful.tetris.model.dto.PlayerInfo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
