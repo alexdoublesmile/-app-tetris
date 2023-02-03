@@ -302,28 +302,28 @@ public final class GameForm extends JFrame {
     }
 
     public void updateSpeed(double speed) {
+        double speedFactor = speed * 100;
         StringBuilder speedBuilder = new StringBuilder();
-        String speedString = String.valueOf(speed);
-        String firstSymbol = speedString.substring(0, 1);
-        String otherSymbols = speedString.length() > 5 
-                ? speedString.substring(2, 5) : speedString.substring(2);
         
-        speedBuilder.append(firstSymbol.equals("0") ? "" : "firstSymbol")
-                .append(otherSymbols)
-                .append("%");
+        String speedString = String.valueOf(speedFactor);
+        String symbols = speedString.length() > 5 
+                ? speedString.substring(0, 5) 
+                : speedString;
+        speedBuilder.append(symbols).append("%");
         
         speedDisplay.setText("Speed: " + speedBuilder.toString());
     }
 
     public void updateEfficiency(double efficiency) {
+        double efficiencyFactor = efficiency * 100;
         StringBuilder efficiencyBuilder = new StringBuilder();
-        String efficiencyString = String.valueOf(efficiency);
-        String firstSymbol = efficiencyString.substring(0, 1);
-        String otherSymbols = speedString.length() > 5 ? speedString.substring(2, 5) : speedString.substring(2);
 
-        efficiencyBuilder.append(firstSymbol.equals("0") ? "" : "firstSymbol")
-                .append(otherSymbols)
-                .append("%");
+        String efficiencyString = String.valueOf(efficiencyFactor);
+        String symbols = efficiencyString.length() > 5
+                ? efficiencyString.substring(0, 5)
+                : efficiencyString;
+        efficiencyBuilder.append(symbols).append("%");
+        
         efficiencyDisplay.setText("Eff: " + efficiencyBuilder.toString());
     }
 }

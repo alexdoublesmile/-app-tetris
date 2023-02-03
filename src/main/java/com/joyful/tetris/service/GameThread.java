@@ -68,7 +68,7 @@ public class GameThread extends Thread {
             lines += clearedLines;
 
             if (lines > 0) {
-                efficiency = lines / blocksNumber;
+                efficiency = (double) lines / (double) blocksNumber;
             }
 
             rank = rank.getRankByScore(score);
