@@ -3,6 +3,7 @@ package com.joyful.tetris.service;
 import com.joyful.tetris.Launcher;
 import com.joyful.tetris.model.PlayerInfo;
 import com.joyful.tetris.model.PlayerRank;
+import static com.joyful.tetris.model.PlayerRank.NOOB;
 import com.joyful.tetris.util.AudioHelper;
 import com.joyful.tetris.util.ScoreHelper;
 import static com.joyful.tetris.util.TimeHelper.getSeconds;
@@ -14,7 +15,7 @@ public class GameThread extends Thread {
     private GameForm gameForm;
     private GameArea gameArea;
     
-    private PlayerRank rank = ScoreConstants.DEFAULT_RANK;
+    private PlayerRank rank = NOOB;
     private int score;
     private int lines;
     private int blocksNumber;
