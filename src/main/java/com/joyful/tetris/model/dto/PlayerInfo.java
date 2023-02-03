@@ -71,4 +71,33 @@ public final class PlayerInfo {
             return new PlayerInfo(playerName, score, lines, rank, level, speed, efficiency);
         }
     }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getLines() {
+        return lines;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getEfficiency() {
+        return efficiency;
+    }
+    
 }

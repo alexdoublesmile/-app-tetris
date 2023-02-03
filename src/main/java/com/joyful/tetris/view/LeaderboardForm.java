@@ -38,6 +38,10 @@ public class LeaderboardForm extends javax.swing.JFrame {
     }   
     
     public void addPlayer(PlayerInfo info) {
+        String playerName = info.getPlayerName();
+        String playerName = info.getPlayerName();
+        String playerName = info.getPlayerName();
+        String playerName = info.getPlayerName();
         model.addRow(new Object[]{playerName, score, lines, rank, level, speed, efficiency});
         sorter.sort();
 
