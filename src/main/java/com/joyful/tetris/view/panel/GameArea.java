@@ -4,7 +4,6 @@ import com.joyful.tetris.Launcher;
 import com.joyful.tetris.model.TetrisBlock;
 import com.joyful.tetris.util.BlockHelper;
 import com.joyful.tetris.util.ColorHelper;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import static java.awt.Color.WHITE;
 import java.awt.Graphics;
@@ -310,43 +309,33 @@ public class GameArea extends JPanel {
             g.setColor(color);
             g.fillRect(x, y, cellSize, cellSize);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 10));
             g.drawRect(x, y, cellSize, cellSize);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 9));
             g.drawRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 8));
             g.drawRect(x + 2, y + 2, cellSize - 4, cellSize - 4);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 7));
             g.drawRect(x + 3, y + 3, cellSize - 6, cellSize - 6);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 6));
             g.drawRect(x + 4, y + 4, cellSize - 8, cellSize - 8);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 5));
             g.drawRect(x + 5, y + 5, cellSize - 10, cellSize - 10);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 4));
             g.drawRect(x + 6, y + 6, cellSize - 12, cellSize - 12);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 3));
             g.drawRect(x + 7, y + 7, cellSize - 14, cellSize - 14);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 2));
             g.drawRect(x + 8, y + 8, cellSize - 16, cellSize - 16);
 
-            g.setStroke(new BasicStroke(1));
             g.setColor(ColorHelper.getDarker(color, 1));
             g.drawRect(x + 9, y + 9, cellSize - 18, cellSize - 18);
         }

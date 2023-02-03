@@ -81,14 +81,14 @@ public class LeaderboardForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Player", "Score"
+                "Player", "Score", "Lines", "Rank", "Level", "Avg. Speed", "Avg. Efficiency"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,10 +113,10 @@ public class LeaderboardForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -125,8 +125,8 @@ public class LeaderboardForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnMainMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -180,6 +180,11 @@ public class LeaderboardForm extends javax.swing.JFrame {
             Vector columnIdentifiers = new Vector();
             columnIdentifiers.add("Player");
             columnIdentifiers.add("Score");
+            columnIdentifiers.add("Lines");
+            columnIdentifiers.add("Rank");
+            columnIdentifiers.add("Level");
+            columnIdentifiers.add("Avg. Speed");
+            columnIdentifiers.add("Avg. Efficiency");
 
             try (FileInputStream fis = new FileInputStream(leaderboardFilename); ObjectInputStream ois = new ObjectInputStream(fis)) {
                 model.setDataVector((Vector<? extends Vector>) ois.readObject(), columnIdentifiers);
