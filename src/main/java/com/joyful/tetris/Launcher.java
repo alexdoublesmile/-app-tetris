@@ -115,4 +115,12 @@ public class Launcher {
     public static void playClearFourLines() {
         audioPlayer.singlePlay(CLEAR_FOUR_LINES);
     }
+
+    public static void disableSounds() {
+        audioPlayer.disableSound();
+    }
+
+    public static void enableSounds() {
+        audioPlayer.enableSound();
+    }
 }

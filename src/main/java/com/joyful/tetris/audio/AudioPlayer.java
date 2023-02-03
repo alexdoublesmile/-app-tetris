@@ -49,4 +49,31 @@ public class AudioPlayer {
     public void stopMainTheme() {
         mainThemeClip.close();
     }
+
+    public void disableSound() {
+//        streamMap.values().stream()
+//                .forEach(stream -> {
+//                    try {
+//                        AudioFormat format = stream.getFormat();
+//                        DataLine.Info info = new DataLine.Info(Clip.class, format);
+//                        Line line = AudioSystem.getLine(info);
+//
+//                        FloatControl gainControl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
+//                        float min = gainControl.getMinimum(); 
+//                        gainControl.setValue(min);
+//                        
+//                    } catch (LineUnavailableException ex) {
+//                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                });
+    }
+
+    public void enableSound() {
+//        clipMap.values().stream()
+//                .forEach(clip -> {
+//                    FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+//                    gainControl.setValue(+6.0f); // Reduce volume by 10 decibels.
+//
+//                });
+    }
 }

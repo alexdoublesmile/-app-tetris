@@ -7,6 +7,7 @@ import com.joyful.tetris.util.ScoreHelper;
 import com.joyful.tetris.view.panel.GameArea;
 import com.joyful.tetris.view.panel.MiniPanel;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
@@ -32,6 +33,7 @@ public final class GameForm extends JFrame {
         add(miniPanel);
         
         initControls();
+        initSoundControl();
     }
     
     public void startGame() {
@@ -158,7 +160,9 @@ public final class GameForm extends JFrame {
         });
 
         btnSound.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnSound.setText("Sound: On");
+        btnSound.setSelected(true);
+        btnSound.setText("Sound is On");
+        btnSound.setFocusPainted(false);
         btnSound.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSoundActionPerformed(evt);
@@ -242,7 +246,6 @@ public final class GameForm extends JFrame {
     }//GEN-LAST:event_btnPauseActionPerformed
 
     private void btnSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSoundActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnSoundActionPerformed
 
     public static void main(String args[]) {
@@ -315,5 +318,17 @@ public final class GameForm extends JFrame {
         String efficiencyPercent = ScoreHelper.getPercentByDouble(efficiency);
         
         efficiencyDisplay.setText("Eff: " + efficiencyPercent);
+    }
+
+    private void initSoundControl() {
+        btnSound.addItemListener(e -> {
+            if (ItemEvent.DESELECTED == e.getStateChange()) {
+                btnSound.setText("Sound is Off");
+                Launcher.disableSounds();
+            } else {
+                btnSound.setText("Sound is On");
+                Launcher.enableSounds();
+            }
+        });
     }
 }
