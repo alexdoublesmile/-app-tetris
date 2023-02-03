@@ -1,6 +1,8 @@
 package com.joyful.tetris.util;
 
-import java.awt.Color;
+import com.joyful.tetris.model.PlayerRank;
+
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,16 +17,10 @@ public final class ColorHelper {
             new Color(200, 100, 100)
     );
 
-    public static Color getNewColor(Color previousColor) {
-        Color color;
-        do {
-            color = AVAILABLE_COLORS.get(ThreadLocalRandom.current().nextInt(AVAILABLE_COLORS.size()));
-        } while (color.equals(previousColor));
-        return color;
-    }
+    public static Color getNewColor(PlayerRank rank) {
+        List<Color> availableColors = rank.getColors();
 
-    public static Color getNewColor() {
-        return AVAILABLE_COLORS.get(ThreadLocalRandom.current().nextInt(AVAILABLE_COLORS.size()));
+        return availableColors.get(ThreadLocalRandom.current().nextInt(availableColors.size()));
     }
 
     public static Color getDarker(Color color, int times) {

@@ -78,6 +78,7 @@ public class GameThread extends Thread {
 
             rank = rank.getRankByScore(score);
             
+            gameArea.updateRank(rank);
             gameForm.updateRank(rank);
             gameForm.updateScore(score);
             gameForm.updateLines(lines);

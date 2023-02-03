@@ -20,14 +20,14 @@ public class TetrisBlock {
         shapeRotations = BlockHelper.getShapeRotations(shape);
     }
     
-    public void spawn(int gridWidth, Color previousColor) {
+    public void spawn(int gridWidth, PlayerRank rank) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         rotation = random.nextInt(shapeRotations.length);
         shape = shapeRotations[rotation];
         
         y = -getHeight();
         x = random.nextInt(gridWidth - getWidth());
-        color = ColorHelper.getNewColor(previousColor);
+        color = ColorHelper.getNewColor(rank);
     }
 
     public int[][] getShape() {

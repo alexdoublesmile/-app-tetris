@@ -1,49 +1,61 @@
 package com.joyful.tetris.view.panel;
 
 import com.joyful.tetris.Launcher;
+import com.joyful.tetris.model.PlayerRank;
+
+import static com.joyful.tetris.model.PlayerRank.NOOB;
+
 import com.joyful.tetris.model.TetrisBlock;
 import com.joyful.tetris.util.BlockHelper;
 import com.joyful.tetris.util.ColorHelper;
+
 import java.awt.Color;
+
 import static java.awt.Color.WHITE;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.Arrays;
+
 import static java.util.Objects.nonNull;
+
 import javax.swing.JPanel;
 
-public class GameArea extends JPanel { 
+public class GameArea extends JPanel {
     private static final int gridColumns = 10;
     private final int cellSize;
     private final int gridRows;
-    
+
     private MiniPanel miniPanel;
     private Color[][] background;
-    
+
     private TetrisBlock currentBlock;
     private TetrisBlock nextBlock;
-    
+
+    private PlayerRank rank = NOOB;
+
     public GameArea(JPanel placeholder) {
         setBounds(placeholder.getBounds());
         setBackground(placeholder.getBackground());
         setBorder(placeholder.getBorder());
-        
+
         cellSize = getBounds().width / gridColumns;
         gridRows = getBounds().height / cellSize;
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        
+
         drawBackgrouond(g2);
         drawBlock(g2);
     }
-    
+
     public int clearLines() {
         boolean lineFilled;
         int linesCleared = 0;
@@ -58,18 +70,18 @@ public class GameArea extends JPanel {
             if (lineFilled) {
                 clearLine(row);
                 linesCleared++;
-                
+
                 shiftDown(row);
-                
+
                 clearLine(0);
-                
+
                 row++;
                 repaint();
             }
         }
         return linesCleared;
     }
-    
+
     public void clearLine(int row) {
         for (int i = 0; i < gridColumns; i++) {
             background[row][i] = null;
@@ -83,7 +95,7 @@ public class GameArea extends JPanel {
             }
         }
     }
-    
+
     public boolean isBlockOutOfBounds() {
         if (currentBlock.getY() < 0) {
             currentBlock = null;
@@ -95,7 +107,7 @@ public class GameArea extends JPanel {
     public TetrisBlock getNextBlock() {
         return nextBlock;
     }
-    
+
     public void moveBlockToBackground() {
         for (int i = 0; i < currentBlock.getHeight(); i++) {
             for (int j = 0; j < currentBlock.getWidth(); j++) {
@@ -105,7 +117,7 @@ public class GameArea extends JPanel {
             }
         }
     }
-    
+
     public void moveBlockRight() {
         if (currentBlock == null) {
             return;
@@ -130,7 +142,7 @@ public class GameArea extends JPanel {
         if (currentBlock == null) {
             return;
         }
-        while(checkBottom()) {
+        while (checkBottom()) {
             currentBlock.moveDown();
             repaint();
         }
@@ -142,7 +154,7 @@ public class GameArea extends JPanel {
             return;
         }
         currentBlock.rotate();
-        
+
         // prevent sides or bottom rotation
         if (currentBlock.getLeftEdge() < 0) {
             currentBlock.saveShift(0);
@@ -156,22 +168,22 @@ public class GameArea extends JPanel {
             currentBlock.saveShift(newX);
             currentBlock.setX(newX);
         }
-        
+
         // prevent background rotation
         for (int row = 0; row < currentBlock.getHeight(); row++) {
             for (int col = 0; col < currentBlock.getWidth(); col++) {
                 int gridRow = (currentBlock.getY() + row);
                 int gridColumn = (currentBlock.getX() + col);
-                
+
                 // break if under screen
                 if (gridRow < 0) {
                     break;
                 }
-                if (currentBlock.getShape()[row][col] != 0 
+                if (currentBlock.getShape()[row][col] != 0
                         && background[gridRow][gridColumn] != null) {
-                        currentBlock.unrotate();
-                        currentBlock.unshift();
-                        return;
+                    currentBlock.unrotate();
+                    currentBlock.unshift();
+                    return;
                 }
             }
         }
@@ -179,18 +191,14 @@ public class GameArea extends JPanel {
     }
 
     public void spawnBlock() {
-        Color previousColor = nonNull(currentBlock) 
-                ? currentBlock.getColor() 
-                : WHITE;
-        
         if (nextBlock == null) {
             currentBlock = BlockHelper.getNewBlock(currentBlock);
-            currentBlock.spawn(gridColumns, previousColor);
+            currentBlock.spawn(gridColumns, rank);
         } else {
             currentBlock = nextBlock;
         }
         nextBlock = BlockHelper.getNewBlock(currentBlock);
-        nextBlock.spawn(gridColumns, previousColor);
+        nextBlock.spawn(gridColumns, rank);
 
         miniPanel.setNextBlock(nextBlock);
         miniPanel.repaint();
@@ -201,17 +209,24 @@ public class GameArea extends JPanel {
             int[][] shape = currentBlock.getShape();
             for (int row = 0; row < currentBlock.getHeight(); row++) {
                 for (int col = 0; col < currentBlock.getWidth(); col++) {
-                    if (shape[row][col] == 1) {
-                        int x = (currentBlock.getX() + col) * cellSize - 1;
-                        int y = (currentBlock.getY() + row) * cellSize - 1;
+                    try {
+                        if (shape[row][col] == 1) {
+                            int x = (currentBlock.getX() + col) * cellSize - 1;
+                            int y = (currentBlock.getY() + row) * cellSize - 1;
 
-                        drawGridSquare(g, currentBlock.getColor(), x, y);
+                            drawGridSquare(g, currentBlock.getColor(), x, y);
+                        }
+                    } catch (ArrayIndexOutOfBoundsException ex) {
+                        System.out.println(Arrays.deepToString(shape));
+                        System.out.println(row);
+                        System.out.println(col);
+                        throw ex;
                     }
-                }            
+                }
             }
         }
     }
-    
+
     public boolean moveBlockDown() {
         if (!checkBottom()) {
             return false;
@@ -225,7 +240,7 @@ public class GameArea extends JPanel {
     private boolean checkBottom() {
         if (currentBlock.getBottomCoord() == gridRows) {
             return false;
-        } 
+        }
         int[][] shape = currentBlock.getShape();
         int width = currentBlock.getWidth();
         int height = currentBlock.getHeight();
@@ -242,11 +257,11 @@ public class GameArea extends JPanel {
         }
         return true;
     }
-    
+
     private boolean checkLeft() {
         if (currentBlock.getLeftEdge() == 0) {
             return false;
-        } 
+        }
         int[][] shape = currentBlock.getShape();
         int width = currentBlock.getWidth();
         int height = currentBlock.getHeight();
@@ -302,7 +317,7 @@ public class GameArea extends JPanel {
                 }
             }
         }
-    }   
+    }
 
     private void drawGridSquare(Graphics2D g, Color color, int x, int y) {
         if (nonNull(color)) {
@@ -348,4 +363,13 @@ public class GameArea extends JPanel {
     public void initBackground() {
         background = new Color[gridRows][gridColumns];
     }
+
+    public PlayerRank getRank() {
+        return rank;
+    }
+
+    public void updateRank(PlayerRank rank) {
+        this.rank = rank;
+    }
+
 }
