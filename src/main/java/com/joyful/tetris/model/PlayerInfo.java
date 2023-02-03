@@ -6,10 +6,10 @@ public final class PlayerInfo {
     private final int lines;
     private final String rank;
     private final int level;
-    private final double speed;
-    private final double efficiency;
+    private final String speed;
+    private final String efficiency;
 
-    public PlayerInfo(String playerName, int score, int lines, String rank, int level, double speed, double efficiency) {
+    public PlayerInfo(String playerName, int score, int lines, String rank, int level, String speed, String efficiency) {
         this.playerName = playerName;
         this.score = score;
         this.lines = lines;
@@ -29,8 +29,8 @@ public final class PlayerInfo {
         private int lines;
         private String rank;
         private int level;
-        private double speed;
-        private double efficiency;
+        private String speed;
+        private String efficiency;
         
         public PlayerInfoBuilder playerName(String playerName) {
             this.playerName = playerName;
@@ -57,12 +57,12 @@ public final class PlayerInfo {
             return this;
         }
 
-        public PlayerInfoBuilder speed(double speed) {
+        public PlayerInfoBuilder speed(String speed) {
             this.speed = speed;
             return this;
         }
 
-        public PlayerInfoBuilder efficiency(double efficiency) {
+        public PlayerInfoBuilder efficiency(String efficiency) {
             this.efficiency = efficiency;
             return this;
         }
@@ -92,11 +92,11 @@ public final class PlayerInfo {
         return level;
     }
 
-    public double getSpeed() {
+    public String getSpeed() {
         return speed;
     }
 
-    public double getEfficiency() {
+    public String getEfficiency() {
         return efficiency;
     }
 

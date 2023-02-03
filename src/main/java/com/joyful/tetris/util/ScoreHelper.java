@@ -10,4 +10,15 @@ public final class ScoreHelper {
                 default: return 0;
         }
     }
+
+    public static String getPercentByDouble(double num) {
+        double numPercent = num * 100;
+        StringBuilder percentBuilder = new StringBuilder();
+
+        String percentString = String.valueOf(numPercent);
+        String symbols = percentString.length() > 5
+                ? percentString.substring(0, 5)
+                : percentString;
+        return percentBuilder.append(symbols).append("%").toString();
+    }
 }

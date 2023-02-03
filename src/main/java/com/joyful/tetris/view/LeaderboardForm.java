@@ -43,8 +43,8 @@ public class LeaderboardForm extends javax.swing.JFrame {
         int lines = info.getLines();
         String rank = info.getRank();
         int level = info.getLevel();
-        double speed = info.getSpeed();
-        double efficiency = info.getEfficiency();
+        String speed = info.getSpeed();
+        String efficiency = info.getEfficiency();
         model.addRow(new Object[]{playerName, score, lines, rank, level, speed, efficiency});
         sorter.sort();
 
