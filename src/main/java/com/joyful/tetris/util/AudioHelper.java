@@ -3,10 +3,6 @@ package com.joyful.tetris.util;
 import com.joyful.tetris.Launcher;
 import static com.joyful.tetris.audio.AudioConstants.SOUND_DIR_PATH;
 import com.joyful.tetris.audio.AudioPlayer;
-import static com.joyful.tetris.model.PlayerRank.EXPERIENCED;
-import static com.joyful.tetris.model.PlayerRank.EXPERT;
-import static com.joyful.tetris.model.PlayerRank.MASTER;
-import static com.joyful.tetris.model.PlayerRank.NOOB;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -65,19 +61,19 @@ public final class AudioHelper {
         }
     }
 
-    public static void playSoundByScore(int previousScore, int clearedLines) {
-        int currentScore = previousScore + ScoreHelper.getScore(clearedLines);
-        if (previousScore < NOOB.getNextRankScore() && currentScore >= NOOB.getNextRankScore()) {
-            Launcher.playExperienced();
-        }
-        if (previousScore < EXPERIENCED.getNextRankScore() && currentScore >= EXPERIENCED.getNextRankScore()) {
-            Launcher.playExpert();
-        }
-        if (previousScore < EXPERT.getNextRankScore() && currentScore >= EXPERT.getNextRankScore()) {
-            Launcher.playMaster();
-        }
-        if (previousScore < MASTER.getNextRankScore() && currentScore >= MASTER.getNextRankScore()) {
-            Launcher.playSenior();
-        }
-    }
+//    public static void playSoundByScore(int previousScore, int clearedLines) {
+//        int currentScore = previousScore + ScoreHelper.getScore(clearedLines);
+//        if (previousScore < NOOB.getNextRankScore() && currentScore >= NOOB.getNextRankScore()) {
+//            Launcher.playExperienced();
+//        }
+//        if (previousScore < EXPERIENCED.getNextRankScore() && currentScore >= EXPERIENCED.getNextRankScore()) {
+//            Launcher.playExpert();
+//        }
+//        if (previousScore < EXPERT.getNextRankScore() && currentScore >= EXPERT.getNextRankScore()) {
+//            Launcher.playMaster();
+//        }
+//        if (previousScore < MASTER.getNextRankScore() && currentScore >= MASTER.getNextRankScore()) {
+//            Launcher.playSenior();
+//        }
+//    }
 }

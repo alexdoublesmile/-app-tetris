@@ -1,6 +1,7 @@
 package com.joyful.tetris;
 
 import com.joyful.tetris.audio.AudioPlayer;
+import static com.joyful.tetris.audio.AudioType.BEGINNER;
 import static com.joyful.tetris.audio.AudioType.CLEAR_FOUR_LINES;
 import static com.joyful.tetris.audio.AudioType.CLEAR_LINE;
 import static com.joyful.tetris.audio.AudioType.EXPERIENCED;
@@ -86,12 +87,16 @@ public class Launcher {
         audioPlayer.singlePlay(FAST_DROP);
     }
 
-    public static void playExpert() {
-        audioPlayer.singlePlay(EXPERT);
+    public static void playBeginner() {
+        audioPlayer.singlePlay(BEGINNER);
     }
 
     public static void playExperienced() {
         audioPlayer.singlePlay(EXPERIENCED);
+    }
+
+    public static void playExpert() {
+        audioPlayer.singlePlay(EXPERT);
     }
 
     public static void playMaster() {
@@ -99,7 +104,8 @@ public class Launcher {
     }
 
     public static void playSenior() {
-        audioPlayer.singlePlay(SENIOR);
+        audioPlayer.stopMainTheme();
+        audioPlayer.loopPlay(SENIOR);
     }
 
     public static void playPause() {

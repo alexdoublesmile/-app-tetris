@@ -68,7 +68,7 @@ public class GameThread extends Thread {
             lines += clearedLines;
 
             if (lines > 0) {
-                efficiency = (double) lines / (double) blocksNumber;
+                efficiency = (double) lines / blocksNumber;
             }
 
             rank = rank.getRankByScore(score);
@@ -80,7 +80,7 @@ public class GameThread extends Thread {
             gameForm.updateEfficiency(efficiency);
             
             AudioHelper.playSoundByLinesNumber(clearedLines);
-            AudioHelper.playSoundByScore(score, clearedLines);
+//            AudioHelper.playSoundByScore(score, clearedLines);
             
             int lvl = score / scorePerLevel + 1;
             if (lvl > level) {
