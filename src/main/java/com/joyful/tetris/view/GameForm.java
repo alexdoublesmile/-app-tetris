@@ -138,14 +138,14 @@ public final class GameForm extends JFrame {
         linesDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         linesDisplay.setText("Lines: 0");
 
-        speedDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        speedDisplay.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         speedDisplay.setText("Speed: 0");
 
         rankDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rankDisplay.setText("Noob");
 
-        efficiencyDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        efficiencyDisplay.setText("Efficiency: 0");
+        efficiencyDisplay.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        efficiencyDisplay.setText("Eff: 0");
 
         btnPause.setText("Pause");
         btnPause.setFocusable(false);
@@ -187,9 +187,7 @@ public final class GameForm extends JFrame {
                             .addComponent(levelDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(scoreDisplay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(linesDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(rankDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(rankDisplay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSound, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8))
         );
@@ -215,11 +213,11 @@ public final class GameForm extends JFrame {
                         .addComponent(btnMainMenu)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPause)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(speedDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(speedDisplay)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(efficiencyDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
+                        .addComponent(efficiencyDisplay)
+                        .addGap(58, 58, 58)
                         .addComponent(miniPanelPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -304,10 +302,28 @@ public final class GameForm extends JFrame {
     }
 
     public void updateSpeed(double speed) {
-        speedDisplay.setText("Sp: " + speed + " s/b");
+        StringBuilder speedBuilder = new StringBuilder();
+        String speedString = String.valueOf(speed);
+        String firstSymbol = speedString.substring(0, 1);
+        String otherSymbols = speedString.length() > 5 
+                ? speedString.substring(2, 5) : speedString.substring(2);
+        
+        speedBuilder.append(firstSymbol.equals("0") ? "" : "firstSymbol")
+                .append(otherSymbols)
+                .append("%");
+        
+        speedDisplay.setText("Speed: " + speedBuilder.toString());
     }
 
     public void updateEfficiency(double efficiency) {
-        efficiencyDisplay.setText("Eff: " + efficiency + " b/l");
+        StringBuilder efficiencyBuilder = new StringBuilder();
+        String efficiencyString = String.valueOf(efficiency);
+        String firstSymbol = efficiencyString.substring(0, 1);
+        String otherSymbols = speedString.length() > 5 ? speedString.substring(2, 5) : speedString.substring(2);
+
+        efficiencyBuilder.append(firstSymbol.equals("0") ? "" : "firstSymbol")
+                .append(otherSymbols)
+                .append("%");
+        efficiencyDisplay.setText("Eff: " + efficiencyBuilder.toString());
     }
 }

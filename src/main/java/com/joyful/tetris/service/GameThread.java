@@ -61,14 +61,14 @@ public class GameThread extends Thread {
             }
             gameArea.moveBlockToBackground();
             blocksNumber++;
-            speed =  getSeconds(nanoTime() - startTime) / blocksNumber;
+            speed = blocksNumber / getSeconds(nanoTime() - startTime);
             
             int clearedLines = gameArea.clearLines();
             score += ScoreHelper.getScore(clearedLines);
             lines += clearedLines;
 
             if (lines > 0) {
-                efficiency = blocksNumber / lines;
+                efficiency = lines / blocksNumber;
             }
 
             rank = rank.getRankByScore(score);
