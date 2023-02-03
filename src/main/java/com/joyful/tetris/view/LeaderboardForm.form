@@ -74,8 +74,8 @@
                 <Column editable="false" title="Lines" type="java.lang.Integer"/>
                 <Column editable="false" title="Rank" type="java.lang.String"/>
                 <Column editable="false" title="Level" type="java.lang.Integer"/>
-                <Column editable="false" title="Avg. Speed" type="java.lang.Double"/>
-                <Column editable="false" title="Avg. Efficiency" type="java.lang.Double"/>
+                <Column editable="false" title="Avg. Speed" type="java.lang.String"/>
+                <Column editable="false" title="Avg. Efficiency" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

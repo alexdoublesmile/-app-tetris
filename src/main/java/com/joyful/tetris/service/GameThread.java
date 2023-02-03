@@ -81,8 +81,8 @@ public class GameThread extends Thread {
             gameForm.updateRank(rank);
             gameForm.updateScore(score);
             gameForm.updateLines(lines);
-            gameForm.updateSpeed(getPercentByDouble(speed));
-            gameForm.updateEfficiency(getPercentByDouble(efficiency));
+            gameForm.updateSpeed(speed);
+            gameForm.updateEfficiency(efficiency);
             
             AudioHelper.playSoundByLinesNumber(clearedLines);
             

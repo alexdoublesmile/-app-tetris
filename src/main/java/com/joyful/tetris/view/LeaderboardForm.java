@@ -16,8 +16,10 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -93,7 +95,7 @@ public class LeaderboardForm extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -200,6 +202,11 @@ public class LeaderboardForm extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(LeaderboardForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            DefaultTableCellRenderer centerRend = new DefaultTableCellRenderer();
+            centerRend.setHorizontalAlignment(JLabel.CENTER);
+            leaderboard.setDefaultRenderer(String.class, centerRend);
+            leaderboard.setDefaultRenderer(Integer.class, centerRend);
         }
     }
 
@@ -209,6 +216,11 @@ public class LeaderboardForm extends javax.swing.JFrame {
         
         List<SortKey> keys = new ArrayList<>();
         keys.add(new SortKey(1, SortOrder.DESCENDING));
+        keys.add(new SortKey(2, SortOrder.DESCENDING));
+        keys.add(new SortKey(3, SortOrder.DESCENDING));
+        keys.add(new SortKey(4, SortOrder.DESCENDING));
+        keys.add(new SortKey(5, SortOrder.DESCENDING));
+        keys.add(new SortKey(6, SortOrder.DESCENDING));
         
         sorter.setSortKeys(keys);
     }
