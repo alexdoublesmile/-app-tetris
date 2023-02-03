@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum PlayerRank {
-    NOOB("Noob", 200) {
+    NOOB("Noob", 2000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playBeginner();
@@ -20,7 +20,7 @@ public enum PlayerRank {
             );
         }
     },
-    BEGINNER("Beginner", 500) {
+    BEGINNER("Beginner", 5000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playExperienced();
@@ -35,7 +35,7 @@ public enum PlayerRank {
             );
         }
     },
-    EXPERIENCED("Experienced", 1000) {
+    EXPERIENCED("Experienced", 10000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playExpert();
@@ -51,7 +51,7 @@ public enum PlayerRank {
             );
         }
     },
-    EXPERT("Expert", 1500) {
+    EXPERT("Expert", 15000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playMaster();
@@ -61,14 +61,14 @@ public enum PlayerRank {
         @Override
         public List<Color> getColors() {
             return Arrays.asList(
-                    new Color(50, 200, 200),
+                    new Color(255, 155, 50),
                     new Color(50, 180, 100),
                     new Color(255, 255, 150),
                     new Color(200, 200, 200)
             );
         }
     },
-    MASTER("Master", 2000) {
+    MASTER("Master", 20000) {
         @Override
         public PlayerRank getHigherRank() {
             Launcher.playSenior();
@@ -79,14 +79,14 @@ public enum PlayerRank {
         public List<Color> getColors() {
             return Arrays.asList(
                     new Color(50, 200, 200),
+                    new Color(50, 200, 200),
                     new Color(50, 180, 100),
                     new Color(255, 255, 150),
-                    new Color(255, 155, 50),
                     new Color(200, 200, 200)
             );
         }
     },
-    SENIOR("Senior", 2500) {
+    SENIOR("Senior", 25000) {
         @Override
         public PlayerRank getHigherRank() {
             return SENIOR;
