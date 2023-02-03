@@ -26,4 +26,11 @@ public final class ColorHelper {
     public static Color getNewColor() {
         return AVAILABLE_COLORS.get(ThreadLocalRandom.current().nextInt(AVAILABLE_COLORS.size()));
     }
+
+    public static Color getDarker(Color color, int times) {
+        int red = color.getRed() - 5 * times;
+        int green = color.getGreen() - 5 * times;
+        int blue = color.getBlue() - 5 * times;
+        return new Color(red < 0 ? 0 : red, green < 0 ? 0 : green, blue < 0 ? 0 : blue);
+    }
 }

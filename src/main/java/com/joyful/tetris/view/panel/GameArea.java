@@ -3,10 +3,13 @@ package com.joyful.tetris.view.panel;
 import com.joyful.tetris.Launcher;
 import com.joyful.tetris.model.TetrisBlock;
 import com.joyful.tetris.util.BlockHelper;
+import com.joyful.tetris.util.ColorHelper;
+import java.awt.BasicStroke;
 import java.awt.Color;
-import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import static java.util.Objects.nonNull;
 import javax.swing.JPanel;
 
@@ -34,8 +37,12 @@ public class GameArea extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        drawBackgrouond(g);
-        drawBlock(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        
+        drawBackgrouond(g2);
+        drawBlock(g2);
     }
     
     public int clearLines() {
@@ -190,14 +197,14 @@ public class GameArea extends JPanel {
         miniPanel.repaint();
     }
 
-    private void drawBlock(Graphics g) {
+    private void drawBlock(Graphics2D g) {
         if (nonNull(currentBlock)) {
             int[][] shape = currentBlock.getShape();
             for (int row = 0; row < currentBlock.getHeight(); row++) {
                 for (int col = 0; col < currentBlock.getWidth(); col++) {
                     if (shape[row][col] == 1) {
-                        int x = (currentBlock.getX() + col) * cellSize;
-                        int y = (currentBlock.getY() + row) * cellSize;
+                        int x = (currentBlock.getX() + col) * cellSize - 1;
+                        int y = (currentBlock.getY() + row) * cellSize - 1;
 
                         drawGridSquare(g, currentBlock.getColor(), x, y);
                     }
@@ -287,22 +294,62 @@ public class GameArea extends JPanel {
         return true;
     }
 
-    private void drawBackgrouond(Graphics g) {
-        for (int i = 0; i < gridRows; i++) {
+    private void drawBackgrouond(Graphics2D g) {
+        for (int i = gridRows - 1; i > 0; i--) {
             for (int j = 0; j < gridColumns; j++) {
                 Color color = background[i][j];
                 if (color != null) {
-                    drawGridSquare(g, color, j * cellSize, i * cellSize);
+                    drawGridSquare(g, color, j * cellSize - 1, i * cellSize - 1);
                 }
             }
         }
-    }
+    }   
 
-    private void drawGridSquare(Graphics g, Color color, int x, int y) {
-        g.setColor(color);
-        g.fillRect(x, y, cellSize, cellSize);
-        g.setColor(BLACK);
-        g.drawRect(x, y, cellSize, cellSize);
+    private void drawGridSquare(Graphics2D g, Color color, int x, int y) {
+        if (nonNull(color)) {
+            g.setColor(color);
+            g.fillRect(x, y, cellSize, cellSize);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 10));
+            g.drawRect(x, y, cellSize, cellSize);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 9));
+            g.drawRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 8));
+            g.drawRect(x + 2, y + 2, cellSize - 4, cellSize - 4);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 7));
+            g.drawRect(x + 3, y + 3, cellSize - 6, cellSize - 6);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 6));
+            g.drawRect(x + 4, y + 4, cellSize - 8, cellSize - 8);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 5));
+            g.drawRect(x + 5, y + 5, cellSize - 10, cellSize - 10);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 4));
+            g.drawRect(x + 6, y + 6, cellSize - 12, cellSize - 12);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 3));
+            g.drawRect(x + 7, y + 7, cellSize - 14, cellSize - 14);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 2));
+            g.drawRect(x + 8, y + 8, cellSize - 16, cellSize - 16);
+
+            g.setStroke(new BasicStroke(1));
+            g.setColor(ColorHelper.getDarker(color, 1));
+            g.drawRect(x + 9, y + 9, cellSize - 18, cellSize - 18);
+        }
     }
 
     public void setMiniPanel(MiniPanel miniPanel) {
@@ -312,5 +359,4 @@ public class GameArea extends JPanel {
     public void initBackground() {
         background = new Color[gridRows][gridColumns];
     }
-    
 }
