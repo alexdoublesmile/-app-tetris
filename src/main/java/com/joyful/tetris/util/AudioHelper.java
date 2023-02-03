@@ -50,9 +50,18 @@ public final class AudioHelper {
     }
 
     public static void playSoundByLinesNumber(int clearedLines) {
+//        switch (clearedLines) {
+//            case 1, 2, 3 -> Launcher.playClearLine();
+//            case 4 -> Launcher.playClearFourLines();
+//        }
         switch (clearedLines) {
-            case 1, 2, 3 -> Launcher.playClearLine();
-            case 4 -> Launcher.playClearFourLines();
+            case 1:
+            case 2:
+            case 3:
+                Launcher.playClearLine();
+                break;
+            case 4:
+                Launcher.playClearFourLines();
         }
     }
 

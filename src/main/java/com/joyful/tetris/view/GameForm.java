@@ -304,10 +304,10 @@ public final class GameForm extends JFrame {
     }
 
     public void updateSpeed(double speed) {
-        speedDisplay.setText("Speed: " + speed);
+        speedDisplay.setText("Sp: " + speed + " s/b");
     }
 
     public void updateEfficiency(double efficiency) {
-        efficiencyDisplay.setText("Efficiency: " + efficiency);
+        efficiencyDisplay.setText("Eff: " + efficiency + " b/l");
     }
 }
