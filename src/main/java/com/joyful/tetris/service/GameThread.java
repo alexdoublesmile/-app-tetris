@@ -6,6 +6,7 @@ import com.joyful.tetris.model.PlayerRank;
 import static com.joyful.tetris.model.PlayerRank.NOOB;
 import com.joyful.tetris.util.AudioHelper;
 import com.joyful.tetris.util.ScoreHelper;
+import static com.joyful.tetris.util.ScoreHelper.getPercentByDouble;
 import static com.joyful.tetris.util.TimeHelper.getSeconds;
 import com.joyful.tetris.view.GameForm;
 import com.joyful.tetris.view.panel.GameArea;
@@ -58,8 +59,8 @@ public class GameThread extends Thread {
                         .lines(lines)
                         .rank(rank.getTitle())
                         .level(level)
-                        .speed(getPercespeed)
-                        .efficiency(efficiency)
+                        .speed(getPercentByDouble(speed))
+                        .efficiency(getPercentByDouble(efficiency))
                         .build());
                 break;
             }
@@ -80,8 +81,8 @@ public class GameThread extends Thread {
             gameForm.updateRank(rank);
             gameForm.updateScore(score);
             gameForm.updateLines(lines);
-            gameForm.updateSpeed(speed);
-            gameForm.updateEfficiency(efficiency);
+            gameForm.updateSpeed(getPercentByDouble(speed));
+            gameForm.updateEfficiency(getPercentByDouble(efficiency));
             
             AudioHelper.playSoundByLinesNumber(clearedLines);
             

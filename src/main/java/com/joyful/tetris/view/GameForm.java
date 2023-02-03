@@ -3,7 +3,6 @@ package com.joyful.tetris.view;
 import com.joyful.tetris.Launcher;
 import com.joyful.tetris.model.PlayerRank;
 import com.joyful.tetris.service.GameThread;
-import com.joyful.tetris.util.ScoreHelper;
 import com.joyful.tetris.view.panel.GameArea;
 import com.joyful.tetris.view.panel.MiniPanel;
 import java.awt.event.ActionEvent;
@@ -305,15 +304,11 @@ public final class GameForm extends JFrame {
         linesDisplay.setText("Lines: " + lines);
     }
 
-    public void updateSpeed(double speed) {
-        String speedPercent = ScoreHelper.getPercentByDouble(speed);
-        
+    public void updateSpeed(String speedPercent) {
         speedDisplay.setText("Speed: " + speedPercent);
     }
         
-    public void updateEfficiency(double efficiency) {
-        String efficiencyPercent = ScoreHelper.getPercentByDouble(efficiency);
-        
+    public void updateEfficiency(String efficiencyPercent) {
         efficiencyDisplay.setText("Eff: " + efficiencyPercent);
     }
 }
