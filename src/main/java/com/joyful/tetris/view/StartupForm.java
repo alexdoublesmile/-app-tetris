@@ -19,6 +19,7 @@ public class StartupForm extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         btnSettings = new javax.swing.JButton();
+        versionLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -50,7 +51,7 @@ public class StartupForm extends javax.swing.JFrame {
             }
         });
 
-        btnSettings.setText("Settings");
+        btnSettings.setText("Settings (under development)");
         btnSettings.setFocusPainted(false);
         btnSettings.setFocusable(false);
         btnSettings.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +59,9 @@ public class StartupForm extends javax.swing.JFrame {
                 btnSettingsActionPerformed(evt);
             }
         });
+
+        versionLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        versionLabel.setText("v.4.2.5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,11 +75,17 @@ public class StartupForm extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(versionLabel)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(versionLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
@@ -145,5 +155,6 @@ public class StartupForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel versionLabel;
     // End of variables declaration//GEN-END:variables
 }
