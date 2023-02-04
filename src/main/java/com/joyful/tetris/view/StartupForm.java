@@ -24,6 +24,7 @@ public class StartupForm extends javax.swing.JFrame {
         setResizable(false);
 
         jButton1.setText("Start Game");
+        jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -32,6 +33,7 @@ public class StartupForm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Quit");
+        jButton2.setFocusPainted(false);
         jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,6 +42,7 @@ public class StartupForm extends javax.swing.JFrame {
         });
 
         jButton3.setText("Leaderboard");
+        jButton3.setFocusPainted(false);
         jButton3.setFocusable(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +51,7 @@ public class StartupForm extends javax.swing.JFrame {
         });
 
         btnSettings.setText("Settings");
+        btnSettings.setFocusPainted(false);
         btnSettings.setFocusable(false);
         btnSettings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

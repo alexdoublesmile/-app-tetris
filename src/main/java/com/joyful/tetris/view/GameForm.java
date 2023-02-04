@@ -275,12 +275,14 @@ public final class GameForm extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
-        Launcher.playSelect();
-        
+        resetPause();
         setVisible(false);
-        Launcher.showStartup();
-        
         gameThread.interrupt();
+
+        Launcher.playSelect();
+
+        Launcher.showStartup();
+
     }//GEN-LAST:event_btnMainMenuActionPerformed
 
     private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
@@ -385,5 +387,10 @@ public final class GameForm extends JFrame {
     private void togglePause() {
         paused = gameThread.togglePause();
         pauseMessage.setText(paused ? "P  A  U  S  E" : "");
+    }
+
+    private void resetPause() {
+        paused = false;
+        pauseMessage.setText("");
     }
 }
