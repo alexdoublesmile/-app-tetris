@@ -25,6 +25,7 @@ public class GameThread extends Thread {
     private double efficiency;
     private int scorePerLevel = 1000;
     private long pause = 1000;
+    private boolean isPaused;
     private double speedupPerLevel = 0.1;
     
     public GameThread(GameArea gameArea, GameForm gameForm) {
@@ -47,6 +48,9 @@ public class GameThread extends Thread {
             
             while(gameArea.moveBlockDown()) {   
                 try {
+                    while(isPaused) {
+                        Thread.sleep(1);
+                    }
                     Thread.sleep(pause);
                 } catch (InterruptedException ex) {
                     return;
