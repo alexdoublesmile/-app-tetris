@@ -219,17 +219,13 @@ public class GameArea extends JPanel {
         }
     }
 
-    public boolean moveBlockDown(boolean paused) {
-        if (paused) {
-            return true;
-        }
-
-        if (!needFall()) {
-            return false;
-        } else {
+    public boolean needMoveBlockDown() {
+        if (needFall()) {
             currentBlock.moveDown();
             repaint();
             return true;
+        } else {
+            return false;
         }
     }
 

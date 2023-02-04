@@ -48,7 +48,7 @@ public class GameThread extends Thread {
         while(true) {   
             gameArea.spawnBlock();
             
-            while(gameArea.moveBlockDown(gamePaused)) { 
+            while(gamePaused || gameArea.needMoveBlockDown()) {
                 if (gamePaused && startPauseTime == 0) {
                     startPauseTime = nanoTime();
                 } else {
@@ -58,15 +58,13 @@ public class GameThread extends Thread {
                     }
                 }
 
-                if (!gamePaused) {
-                    try {
-                        Thread.sleep(blockPause);
-                    } catch (InterruptedException ex) {
-                        return;
-                    }
+                try {
+                    Thread.sleep(blockPause);
+                } catch (InterruptedException ex) {
+                    return;
                 }
             }
-            
+
             if (gameArea.isBlockOutOfBounds()) {
                 Launcher.gameOver(PlayerInfo.builder()
                         .score(score)
@@ -80,9 +78,11 @@ public class GameThread extends Thread {
             }
             gameArea.moveBlockToBackground();
             blocksNumber++;
-            speed = blocksNumber / (getSeconds(nanoTime() - startTime - pauseTime));
+
+            startTime += pauseTime;
             pauseTime = 0;
-            
+            speed = blocksNumber / (getSeconds(nanoTime() - startTime));
+
             int clearedLines = gameArea.clearLines();
             score += ScoreHelper.getScore(clearedLines);
             lines += clearedLines;
