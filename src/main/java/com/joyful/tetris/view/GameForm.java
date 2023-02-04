@@ -36,6 +36,8 @@ public final class GameForm extends JFrame {
         
         initControls();
         initSoundControl();
+//        setFocusable(true);
+//        requestFocus();
     }
     
     public void startGame() {
@@ -165,6 +167,7 @@ public final class GameForm extends JFrame {
         btnSound.setSelected(true);
         btnSound.setText("Sound is On");
         btnSound.setFocusPainted(false);
+        btnSound.setFocusable(false);
         btnSound.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSoundActionPerformed(evt);

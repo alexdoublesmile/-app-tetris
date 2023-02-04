@@ -133,7 +133,7 @@ public class GameThread extends Thread {
     }
 
     public boolean togglePause() {
-        gamePaused = gamePaused ? false : true;
+        gamePaused = !gamePaused;
         return gamePaused;
     }
 }
