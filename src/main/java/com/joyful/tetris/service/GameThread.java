@@ -43,13 +43,19 @@ public class GameThread extends Thread {
     @Override
     public void run() {
         long startTime = nanoTime();
-        long fixedStartTime;
+        long startPauseTime = 0;
+        long pauseTime = 0;
         while(true) {   
             gameArea.spawnBlock();
             
             while(gameArea.moveBlockDown(gamePaused)) { 
                 if (gamePaused) {
-                    fixedStartTime = nanoTime() - startTime;
+                    startPauseTime = nanoTime();
+                } else {
+                    if (startPauseTime > 0) {
+                        pauseTime += (nanoTime() - startPauseTime);
+                        startPauseTime = 0;
+                    }
                 }
                 try {
                     Thread.sleep(blockPause);
@@ -71,7 +77,8 @@ public class GameThread extends Thread {
             }
             gameArea.moveBlockToBackground();
             blocksNumber++;
-            speed = blocksNumber / getSeconds(nanoTime() - startTime);
+            speed = blocksNumber / (getSeconds(nanoTime() - startTime - pauseTime));
+            pauseTime = 0;
             
             int clearedLines = gameArea.clearLines();
             score += ScoreHelper.getScore(clearedLines);
