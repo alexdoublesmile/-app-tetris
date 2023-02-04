@@ -102,8 +102,9 @@ public final class GameForm extends JFrame {
         rankDisplay = new javax.swing.JLabel();
         efficiencyDisplay = new javax.swing.JLabel();
         btnPause = new javax.swing.JButton();
-        btnSound = new javax.swing.JToggleButton();
+        btnMusic = new javax.swing.JToggleButton();
         pauseMessage = new javax.swing.JLabel();
+        btnSound = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -171,14 +172,14 @@ public final class GameForm extends JFrame {
             }
         });
 
-        btnSound.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        btnSound.setSelected(true);
-        btnSound.setText("Sound is On");
-        btnSound.setFocusPainted(false);
-        btnSound.setFocusable(false);
-        btnSound.addActionListener(new java.awt.event.ActionListener() {
+        btnMusic.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btnMusic.setSelected(true);
+        btnMusic.setText("Music");
+        btnMusic.setFocusPainted(false);
+        btnMusic.setFocusable(false);
+        btnMusic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSoundActionPerformed(evt);
+                btnMusicActionPerformed(evt);
             }
         });
 
@@ -189,6 +190,12 @@ public final class GameForm extends JFrame {
         pauseMessage.setFocusable(false);
         pauseMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pauseMessage.setRequestFocusEnabled(false);
+
+        btnSound.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btnSound.setSelected(true);
+        btnSound.setText("Sound");
+        btnSound.setFocusPainted(false);
+        btnSound.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,21 +214,26 @@ public final class GameForm extends JFrame {
                             .addComponent(miniPanelPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameAreaPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scoreDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rankDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(linesDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSound, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 28, Short.MAX_VALUE))
-                            .addComponent(levelDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(16, 16, 16))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(scoreDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rankDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(linesDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(levelDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(16, 16, 16))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pauseMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(44, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pauseMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(10, 10, 10)
+                        .addComponent(btnMusic)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSound)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,7 +252,9 @@ public final class GameForm extends JFrame {
                             .addGap(82, 82, 82)
                             .addComponent(pauseMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(45, 45, 45)
-                            .addComponent(btnSound)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnMusic)
+                                .addComponent(btnSound))
                             .addGap(8, 8, 8))
                         .addComponent(gameAreaPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -251,7 +265,7 @@ public final class GameForm extends JFrame {
                         .addComponent(speedDisplay)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(efficiencyDisplay)
-                        .addGap(58, 58, 58)
+                        .addGap(56, 56, 56)
                         .addComponent(miniPanelPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -273,9 +287,9 @@ public final class GameForm extends JFrame {
         togglePause();
     }//GEN-LAST:event_btnPauseActionPerformed
 
-    private void btnSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSoundActionPerformed
-        
-    }//GEN-LAST:event_btnSoundActionPerformed
+    private void btnMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMusicActionPerformed
+
+    }//GEN-LAST:event_btnMusicActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -309,6 +323,7 @@ public final class GameForm extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMainMenu;
+    private javax.swing.JToggleButton btnMusic;
     private javax.swing.JButton btnPause;
     private javax.swing.JToggleButton btnSound;
     private javax.swing.JLabel efficiencyDisplay;
@@ -351,12 +366,17 @@ public final class GameForm extends JFrame {
     }
 
     private void initSoundControl() {
+        btnMusic.addItemListener(e -> {
+            if (ItemEvent.DESELECTED == e.getStateChange()) {
+                Launcher.disableMusic();
+            } else {
+                Launcher.enableMusic();
+            }
+        });
         btnSound.addItemListener(e -> {
             if (ItemEvent.DESELECTED == e.getStateChange()) {
-                btnSound.setText("Sound is Off");
                 Launcher.disableSounds();
             } else {
-                btnSound.setText("Sound is On");
                 Launcher.enableSounds();
             }
         });

@@ -116,11 +116,19 @@ public class Launcher {
         audioPlayer.singlePlay(CLEAR_FOUR_LINES);
     }
 
+    public static void disableMusic() {
+        audioPlayer.disableMainTheme();
+    }
+
+    public static void enableMusic() {
+        audioPlayer.enableMainTheme();
+    }
+
     public static void disableSounds() {
-        audioPlayer.disableSound();
+        audioPlayer.disableSounds();
     }
 
     public static void enableSounds() {
-        audioPlayer.enableSound();
+        audioPlayer.enableSounds();
     }
 }
