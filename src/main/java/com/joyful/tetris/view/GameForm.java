@@ -20,6 +20,8 @@ public final class GameForm extends JFrame {
     private final MiniPanel miniPanel;
     private GameThread gameThread;
     
+    private boolean paused;
+    
     public GameForm(String title) {
         super(title);
         initComponents();
@@ -56,25 +58,25 @@ public final class GameForm extends JFrame {
         am.put("right", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameArea.moveBlockRight();
+                gameArea.moveBlockRight(paused);
             }
         });
         am.put("left", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameArea.moveBlockLeft();
+                gameArea.moveBlockLeft(paused);
             }
         });
         am.put("down", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameArea.dropBlock();
+                gameArea.dropBlock(paused);
             }
         });
         am.put("up", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameArea.rotateBlock();
+                gameArea.rotateBlock(paused);
             }
         });
     }
@@ -242,7 +244,7 @@ public final class GameForm extends JFrame {
     }//GEN-LAST:event_btnMainMenuActionPerformed
 
     private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
-        // TODO add your handling code here:
+        paused = gameThread.togglePause();
     }//GEN-LAST:event_btnPauseActionPerformed
 
     private void btnSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSoundActionPerformed

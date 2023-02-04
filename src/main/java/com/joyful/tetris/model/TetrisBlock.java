@@ -54,8 +54,10 @@ public class TetrisBlock {
         return shape[0].length;
     }
     
-    public void moveDown() {
-        y++;
+    public void moveDown(boolean paused) {
+        if (!paused) {
+            y++;
+        }
     }
 
     public void moveLeft() {

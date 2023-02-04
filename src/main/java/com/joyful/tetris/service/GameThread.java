@@ -24,8 +24,8 @@ public class GameThread extends Thread {
     private double speed;
     private double efficiency;
     private int scorePerLevel = 1000;
-    private long pause = 1000;
-    private boolean isPaused;
+    private long blockPause = 1000;
+    private boolean gamePaused;
     private double speedupPerLevel = 0.1;
     
     public GameThread(GameArea gameArea, GameForm gameForm) {
@@ -43,15 +43,16 @@ public class GameThread extends Thread {
     @Override
     public void run() {
         long startTime = nanoTime();
+        long fixedStartTime;
         while(true) {   
             gameArea.spawnBlock();
             
-            while(gameArea.moveBlockDown()) {   
+            while(gameArea.moveBlockDown(gamePaused)) { 
+                if (gamePaused) {
+                    fixedStartTime = nanoTime() - startTime;
+                }
                 try {
-                    while(isPaused) {
-                        Thread.sleep(1);
-                    }
-                    Thread.sleep(pause);
+                    Thread.sleep(blockPause);
                 } catch (InterruptedException ex) {
                     return;
                 }
@@ -95,7 +96,7 @@ public class GameThread extends Thread {
             if (lvl > level) {
                 level = lvl;
                 gameForm.updateLevel(level);
-                pause = (long) (pause - (pause * speedupPerLevel));
+                blockPause = (long) (blockPause - (blockPause * speedupPerLevel));
             }
         }
     }
@@ -123,5 +124,9 @@ public class GameThread extends Thread {
     public double getEfficiency() {
         return efficiency;
     }
-    
+
+    public boolean togglePause() {
+        gamePaused = gamePaused ? false : true;
+        return gamePaused;
+    }
 }

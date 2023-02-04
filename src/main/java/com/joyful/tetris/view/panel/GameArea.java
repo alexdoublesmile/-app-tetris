@@ -2,24 +2,16 @@ package com.joyful.tetris.view.panel;
 
 import com.joyful.tetris.Launcher;
 import com.joyful.tetris.model.PlayerRank;
-
 import static com.joyful.tetris.model.PlayerRank.NOOB;
-
 import com.joyful.tetris.model.TetrisBlock;
 import com.joyful.tetris.util.BlockHelper;
 import com.joyful.tetris.util.ColorHelper;
-
 import java.awt.Color;
-
-import static java.awt.Color.WHITE;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.Arrays;
-
 import static java.util.Objects.nonNull;
-
 import javax.swing.JPanel;
 
 public class GameArea extends JPanel {
@@ -143,7 +135,7 @@ public class GameArea extends JPanel {
             return;
         }
         while (checkBottom()) {
-            currentBlock.moveDown();
+            currentBlock.moveDown(false);
             repaint();
         }
         Launcher.playFastDrop();
@@ -227,11 +219,11 @@ public class GameArea extends JPanel {
         }
     }
 
-    public boolean moveBlockDown() {
+    public boolean moveBlockDown(boolean paused) {
         if (!checkBottom()) {
             return false;
         } else {
-            currentBlock.moveDown();
+            currentBlock.moveDown(paused);
             repaint();
             return true;
         }
@@ -370,6 +362,30 @@ public class GameArea extends JPanel {
 
     public void updateRank(PlayerRank rank) {
         this.rank = rank;
+    }
+
+    public void moveBlockRight(boolean paused) {
+        if (!paused) {
+            moveBlockRight();
+        }
+    }
+
+    public void moveBlockLeft(boolean paused) {
+        if (!paused) {
+            moveBlockLeft();
+        }
+    }
+
+    public void dropBlock(boolean paused) {
+        if (!paused) {
+            dropBlock();
+        }
+    }
+
+    public void rotateBlock(boolean paused) {
+        if (!paused) {
+            rotateBlock();
+        }
     }
 
 }
