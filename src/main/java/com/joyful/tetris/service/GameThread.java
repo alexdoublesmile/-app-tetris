@@ -49,18 +49,21 @@ public class GameThread extends Thread {
             gameArea.spawnBlock();
             
             while(gameArea.moveBlockDown(gamePaused)) { 
-                if (gamePaused) {
+                if (gamePaused && startPauseTime == 0) {
                     startPauseTime = nanoTime();
                 } else {
-                    if (startPauseTime > 0) {
+                    if (!gamePaused && startPauseTime > 0) {
                         pauseTime += (nanoTime() - startPauseTime);
                         startPauseTime = 0;
                     }
                 }
-                try {
-                    Thread.sleep(blockPause);
-                } catch (InterruptedException ex) {
-                    return;
+
+                if (!gamePaused) {
+                    try {
+                        Thread.sleep(blockPause);
+                    } catch (InterruptedException ex) {
+                        return;
+                    }
                 }
             }
             
@@ -106,30 +109,6 @@ public class GameThread extends Thread {
                 blockPause = (long) (blockPause - (blockPause * speedupPerLevel));
             }
         }
-    }
-
-    public PlayerRank getRank() {
-        return rank;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public int getLines() {
-        return lines;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public double getEfficiency() {
-        return efficiency;
     }
 
     public boolean togglePause() {

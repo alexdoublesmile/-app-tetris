@@ -134,8 +134,8 @@ public class GameArea extends JPanel {
         if (currentBlock == null) {
             return;
         }
-        while (checkBottom()) {
-            currentBlock.moveDown(false);
+        while (needFall()) {
+            currentBlock.moveDown();
             repaint();
         }
         Launcher.playFastDrop();
@@ -220,16 +220,20 @@ public class GameArea extends JPanel {
     }
 
     public boolean moveBlockDown(boolean paused) {
-        if (!checkBottom()) {
+        if (paused) {
+            return true;
+        }
+
+        if (!needFall()) {
             return false;
         } else {
-            currentBlock.moveDown(paused);
+            currentBlock.moveDown();
             repaint();
             return true;
         }
     }
 
-    private boolean checkBottom() {
+    private boolean needFall() {
         if (currentBlock.getBottomCoord() == gridRows) {
             return false;
         }
