@@ -33,12 +33,14 @@ public class GameThread extends Thread {
         this.gameArea = gameArea;
         
         gameForm.updateScore(score);
+        gameForm.updateLines(lines);
         gameForm.updateLevel(level);
         gameForm.updateRank(rank);
-        gameForm.updateLines(lines);
         gameForm.updateSpeed(speed);
         gameForm.updateEfficiency(efficiency);
-        gameArea.updateRank(rank);
+
+        gameArea.resetRank();
+        gameArea.resetBlocks();
     }
 
     @Override

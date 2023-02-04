@@ -27,6 +27,6 @@ public final class ColorHelper {
         int red = color.getRed() - 5 * times;
         int green = color.getGreen() - 5 * times;
         int blue = color.getBlue() - 5 * times;
-        return new Color(red < 0 ? 0 : red, green < 0 ? 0 : green, blue < 0 ? 0 : blue);
+        return new Color(Math.max(red, 0), Math.max(green, 0), Math.max(blue, 0));
     }
 }

@@ -96,10 +96,6 @@ public class GameArea extends JPanel {
         return false;
     }
 
-    public TetrisBlock getNextBlock() {
-        return nextBlock;
-    }
-
     public void moveBlockToBackground() {
         for (int i = 0; i < currentBlock.getHeight(); i++) {
             for (int j = 0; j < currentBlock.getWidth(); j++) {
@@ -388,4 +384,12 @@ public class GameArea extends JPanel {
         }
     }
 
+    public void resetRank() {
+        rank = NOOB;
+    }
+
+    public void resetBlocks() {
+        currentBlock = null;
+        nextBlock = null;
+    }
 }
