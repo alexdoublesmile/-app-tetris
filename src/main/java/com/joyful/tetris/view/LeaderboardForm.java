@@ -80,6 +80,8 @@ public class LeaderboardForm extends javax.swing.JFrame {
         setResizable(false);
 
         btnMainMenu.setText("Main Menu");
+        btnMainMenu.setFocusPainted(false);
+        btnMainMenu.setFocusable(false);
         btnMainMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMainMenuActionPerformed(evt);

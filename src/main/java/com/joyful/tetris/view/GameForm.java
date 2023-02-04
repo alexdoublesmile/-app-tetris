@@ -136,6 +136,7 @@ public final class GameForm extends JFrame {
         );
 
         btnMainMenu.setText("Main Menu");
+        btnMainMenu.setFocusPainted(false);
         btnMainMenu.setFocusable(false);
         btnMainMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +157,7 @@ public final class GameForm extends JFrame {
         efficiencyDisplay.setText("Eff: 0");
 
         btnPause.setText("Pause");
+        btnPause.setFocusPainted(false);
         btnPause.setFocusable(false);
         btnPause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
