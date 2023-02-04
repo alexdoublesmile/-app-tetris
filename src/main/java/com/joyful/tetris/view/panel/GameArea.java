@@ -31,8 +31,6 @@ public class GameArea extends JPanel {
         setBounds(placeholder.getBounds());
         setBackground(placeholder.getBackground());
         setBorder(placeholder.getBorder());
-//        setFocusable(true);
-//        requestFocus();
 
         cellSize = getBounds().width / gridColumns;
         gridRows = getBounds().height / cellSize;

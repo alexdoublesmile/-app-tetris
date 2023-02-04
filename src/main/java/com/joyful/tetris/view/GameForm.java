@@ -36,8 +36,6 @@ public final class GameForm extends JFrame {
         
         initControls();
         initSoundControl();
-//        setFocusable(true);
-//        requestFocus();
     }
     
     public void startGame() {
@@ -56,6 +54,7 @@ public final class GameForm extends JFrame {
         im.put(KeyStroke.getKeyStroke("LEFT"), "left");
         im.put(KeyStroke.getKeyStroke("DOWN"), "down");
         im.put(KeyStroke.getKeyStroke("UP"), "up");
+        im.put(KeyStroke.getKeyStroke("SPACE"), "pause");
         
         am.put("right", new AbstractAction() {
             @Override
@@ -79,6 +78,12 @@ public final class GameForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameArea.rotateBlock(paused);
+            }
+        });
+        am.put("pause", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                togglePause();
             }
         });
     }
@@ -249,10 +254,11 @@ public final class GameForm extends JFrame {
     }//GEN-LAST:event_btnMainMenuActionPerformed
 
     private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
-        paused = gameThread.togglePause();
+        togglePause();
     }//GEN-LAST:event_btnPauseActionPerformed
 
     private void btnSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSoundActionPerformed
+        
     }//GEN-LAST:event_btnSoundActionPerformed
 
     public static void main(String args[]) {
@@ -337,5 +343,9 @@ public final class GameForm extends JFrame {
                 Launcher.enableSounds();
             }
         });
+    }
+
+    private void togglePause() {
+        paused = gameThread.togglePause();
     }
 }
