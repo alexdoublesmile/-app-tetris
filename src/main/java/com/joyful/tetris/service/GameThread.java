@@ -38,6 +38,7 @@ public class GameThread extends Thread {
         gameForm.updateLines(lines);
         gameForm.updateSpeed(speed);
         gameForm.updateEfficiency(efficiency);
+        gameArea.updateRank(rank);
     }
 
     @Override
