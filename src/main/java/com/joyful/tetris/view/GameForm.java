@@ -124,10 +124,10 @@ public final class GameForm extends JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        scoreDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        scoreDisplay.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         scoreDisplay.setText("Score: 0");
 
-        levelDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        levelDisplay.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         levelDisplay.setText("Level: 1");
 
         miniPanelPlaceholder.setPreferredSize(new java.awt.Dimension(82, 82));
@@ -143,6 +143,7 @@ public final class GameForm extends JFrame {
             .addGap(0, 82, Short.MAX_VALUE)
         );
 
+        btnMainMenu.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnMainMenu.setText("Main Menu");
         btnMainMenu.setFocusPainted(false);
         btnMainMenu.setFocusable(false);
@@ -152,18 +153,19 @@ public final class GameForm extends JFrame {
             }
         });
 
-        linesDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        linesDisplay.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         linesDisplay.setText("Lines: 0");
 
-        speedDisplay.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        speedDisplay.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         speedDisplay.setText("Speed: 0");
 
-        rankDisplay.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        rankDisplay.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         rankDisplay.setText("Noob");
 
-        efficiencyDisplay.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        efficiencyDisplay.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         efficiencyDisplay.setText("Eff: 0");
 
+        btnPause.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnPause.setText("Pause");
         btnPause.setFocusPainted(false);
         btnPause.setFocusable(false);
@@ -173,7 +175,7 @@ public final class GameForm extends JFrame {
             }
         });
 
-        btnMusic.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btnMusic.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         btnMusic.setSelected(true);
         btnMusic.setText("Music");
         btnMusic.setFocusPainted(false);
@@ -192,7 +194,7 @@ public final class GameForm extends JFrame {
         pauseMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pauseMessage.setRequestFocusEnabled(false);
 
-        btnSound.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btnSound.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         btnSound.setSelected(true);
         btnSound.setText("Sound");
         btnSound.setFocusPainted(false);

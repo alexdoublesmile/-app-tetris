@@ -149,7 +149,7 @@
     <Component class="javax.swing.JLabel" name="scoreDisplay">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
+          <Font name="Century Gothic" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Score: 0"/>
       </Properties>
@@ -157,7 +157,7 @@
     <Component class="javax.swing.JLabel" name="levelDisplay">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
+          <Font name="Century Gothic" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Level: 1"/>
       </Properties>
@@ -184,6 +184,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnMainMenu">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Main Menu"/>
         <Property name="focusPainted" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
@@ -195,7 +198,7 @@
     <Component class="javax.swing.JLabel" name="linesDisplay">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
+          <Font name="Century Gothic" size="16" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Lines: 0"/>
       </Properties>
@@ -203,7 +206,7 @@
     <Component class="javax.swing.JLabel" name="speedDisplay">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="10" style="0"/>
+          <Font name="Century Gothic" size="10" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Speed: 0"/>
       </Properties>
@@ -211,7 +214,7 @@
     <Component class="javax.swing.JLabel" name="rankDisplay">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
+          <Font name="Century Gothic" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Noob"/>
       </Properties>
@@ -219,13 +222,16 @@
     <Component class="javax.swing.JLabel" name="efficiencyDisplay">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="10" style="0"/>
+          <Font name="Century Gothic" size="10" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Eff: 0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnPause">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Pause"/>
         <Property name="focusPainted" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
@@ -237,7 +243,7 @@
     <Component class="javax.swing.JToggleButton" name="btnMusic">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="10" style="0"/>
+          <Font name="Century Gothic" size="10" style="0"/>
         </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Music"/>
@@ -268,7 +274,7 @@
     <Component class="javax.swing.JToggleButton" name="btnSound">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="10" style="0"/>
+          <Font name="Century Gothic" size="10" style="0"/>
         </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Sound"/>

@@ -79,6 +79,7 @@ public class LeaderboardForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        btnMainMenu.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnMainMenu.setText("Main Menu");
         btnMainMenu.setFocusPainted(false);
         btnMainMenu.setFocusable(false);
@@ -88,6 +89,7 @@ public class LeaderboardForm extends javax.swing.JFrame {
             }
         });
 
+        leaderboard.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         leaderboard.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -111,6 +113,7 @@ public class LeaderboardForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        leaderboard.setFocusable(false);
         leaderboard.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(leaderboard);
         if (leaderboard.getColumnModel().getColumnCount() > 0) {

@@ -24,6 +24,7 @@ public class StartupForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton1.setText("Start Game");
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
@@ -33,6 +34,7 @@ public class StartupForm extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setText("Quit");
         jButton2.setFocusPainted(false);
         jButton2.setFocusable(false);
@@ -42,6 +44,7 @@ public class StartupForm extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton3.setText("Leaderboard");
         jButton3.setFocusPainted(false);
         jButton3.setFocusable(false);
@@ -51,6 +54,7 @@ public class StartupForm extends javax.swing.JFrame {
             }
         });
 
+        btnSettings.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnSettings.setText("Settings (under development)");
         btnSettings.setFocusPainted(false);
         btnSettings.setFocusable(false);
@@ -61,7 +65,7 @@ public class StartupForm extends javax.swing.JFrame {
         });
 
         versionLabel.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        versionLabel.setText("v.4.2.5");
+        versionLabel.setText("v.4.3.5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
